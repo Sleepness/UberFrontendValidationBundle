@@ -1,0 +1,30 @@
+{
+    "name" : "sleepness/uber-frontend-validation-bundle",
+    "type" : "symfony-bundle",
+    "description" : "Symfony UberFrontendValidationBundle (Sleepness Team)",
+    "keywords" : [
+        "validation",
+        "forms"
+    ],
+    "homepage": "https://github.com/Sleepness",
+    "license": "MIT",
+    "authors" : [
+        {
+            "name" : "Oleg Zinchenko"
+        },
+        {
+            "name" : "Viktor Novikov"
+        },
+        {
+            "name" : "Alexandr Zhulev"
+        }
+    ],
+
+    "require" : {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.3"
+    },
+    "autoload" : {
+        "psr-0" : { "Sleepness\\UberFrontendValidationBundle" : "" }
+    }
+}
