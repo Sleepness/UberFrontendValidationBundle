@@ -1,30 +1,38 @@
 <?php
 
-namespace Sleepness\UberClientSideValidationBundle\Form\Extension;
+namespace Sleepness\UberFrontendValidationBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-class UberClientSideValidationFormExtension extends AbstractTypeExtension
+/**
+ * Class that will extend base form abilities
+ */
+class UberFrontendValidationFormExtension extends AbstractTypeExtension
 {
     private $validator;
 
+    /**
+     * Set validator service for be able to get entity metadata
+     *
+     * @param $validator
+     */
     public function setValidator($validator)
     {
         $this->validator = $validator;
     }
 
     /**
+     * Extend build form view to be able made some customization with fields
+     *
      * @param FormView $view
      * @param FormInterface $form
      * @param array $options
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $config = $form->getConfig();
-        $view->vars['attr']['class'] = 'custom_form';
-        $view->vars['error_mapping'] = $config->getOption('error_mapping');
+        // do some logic
     }
 
     /**
