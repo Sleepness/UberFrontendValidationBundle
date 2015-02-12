@@ -32,7 +32,10 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        // do some logic
+        $config = $form->getConfig();
+        $formData = $config->getData();
+        $entityMetadata = $this->validator->getMetadataFactory()->getMetadataFor($formData); //return metadata of the entity
+        $view->vars['attr']['class'] = 'custom_form'; // play around and add dummy class for form
     }
 
     /**
