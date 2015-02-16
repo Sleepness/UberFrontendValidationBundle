@@ -1,19 +1,20 @@
 {% block form_widget_simple %}
 
     {% set field = pure_field_name(full_name) %}
-    {% set cssClass = '' %}
+    {% set constraints = '' %}
 
     {% if field != '_token' %}
-        {#{{ dump(entity_constraints[field]) }}#}
-        {% set cssClass = entity_constraints[field][0]["constraint"] %}
+        {% for constraint in entity_constraints[field] %}
+            {% set constraints = constraints ~ " " ~ constraint["constraint"] %}
+        {% endfor %}
     {% endif %}
 
     {% set type = type|default('text') %}
-    <input data-constraint="{{ cssClass }}" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}
-           class="{{ cssClass }}"/>
+    <input data-constraint="{{ constraints }}"
+           type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}
+           class="{{ constraints }}"/>
 
 {% endblock form_widget_simple %}
-
 
 {% block button_widget %}
     {%- if label is empty -%}

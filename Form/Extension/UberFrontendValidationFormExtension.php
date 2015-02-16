@@ -33,11 +33,10 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $config = $form->getConfig();
-        $formData = $config->getData();
+        $formData = $config->getDataClass();
 //        $entityMetadata = $this->validator->getMetadataFactory()->getMetadataFor($formData); //return metadata of the entity
         $entityMetadata = $this->validator->getMetadataFactory()->getMetadataFor('Acme\DemoBundle\Entity\Post'); //return metadata of the entity
         $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($entityMetadata);
-//      var_dump($view->vars);die;
         $view->vars['attr']['class'] = 'custom_form'; // play around and add dummy class for form
     }
 
@@ -70,10 +69,15 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
                 }  else {
                     $message ='';
                 }
-
+                $additional = array();
+                if ($constraintName == 'Length') {
+                    $additional['min'] = $constraint->min;
+                    $additional['max'] = $constraint->max;
+                }
                 $result[$property][] = array(
                     'constraint' => $constraintName,
                     'message'    => $message,
+                    'additional' => $additional,
                 );
             }
         }
