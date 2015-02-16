@@ -13,3 +13,18 @@
            class="{{ cssClass }}"/>
 
 {% endblock form_widget_simple %}
+
+
+{% block button_widget %}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+            '%name%': name,
+            '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }} {% if type == 'submit' %}class="form_submit_button"{% endif %}>{{ label|trans({}, translation_domain) }}</button>
+{% endblock button_widget %}
