@@ -1,4 +1,8 @@
 {% block form_widget_simple %}
+    {#{{ dump(full_name) }}#}
+    {#{{ dump(entity_constraints) }}#}
+    {{ pure_field_name(full_name) }}
     {% set type = type|default('text') %}
-    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} class="testik_class"/>
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}
+           class="testik_class"/>
 {% endblock form_widget_simple %}

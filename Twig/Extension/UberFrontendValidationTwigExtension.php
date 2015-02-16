@@ -15,6 +15,7 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     {
         return array(
             'validation_init' => new \Twig_Function_Method($this, 'getValidators', array('is_safe' => array('html'))),
+            'pure_field_name' => new \Twig_Function_Method($this, 'getFieldName', array('is_safe' => array('html'))),
         );
     }
 
@@ -24,6 +25,25 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     public function getValidators()
     {
         // must return including scripts with validation rules
+    }
+
+    /**
+     * Return pure field name
+     *
+     * @param $field
+     * @return string
+     */
+    public function getFieldName($field)
+    {
+        $start = "[";
+        $end = "]";
+        $string = " ".$field;
+        $ini = strpos($string,$start);
+        if ($ini == 0) return "";
+        $ini += strlen($start);
+        $len = strpos($string, $end,$ini) - $ini;
+
+        return substr($string,$ini,$len);
     }
 
     /**
