@@ -34,7 +34,9 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     {
         $config = $form->getConfig();
         $formData = $config->getData();
-        $entityMetadata = $this->validator->getMetadataFactory()->getMetadataFor($formData); //return metadata of the entity
+//        $entityMetadata = $this->validator->getMetadataFactory()->getMetadataFor($formData); //return metadata of the entity
+        $entityMetadata = $this->validator->getMetadataFactory()->getMetadataFor('Acme\DemoBundle\Entity\Post'); //return metadata of the entity
+        $this->prepareConstraintsAttributes($entityMetadata);
         $view->vars['attr']['class'] = 'custom_form'; // play around and add dummy class for form
     }
 
@@ -46,5 +48,35 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     public function getExtendedType()
     {
         return 'field';
+    }
+
+    /**
+     * Prepare array ith constraints based on entity metadata
+     *
+     * @param $entityMetadata
+     * @return array
+     */
+    private function prepareConstraintsAttributes($entityMetadata)
+    {
+        $result = array();
+        foreach ($entityMetadata->properties as $property => $credentials) {
+            $constraints = $entityMetadata->properties[$property]->constraints;
+            foreach ($constraints as $key => $constraint) {
+                $constraintName = explode('\\', get_class($constraint));
+                $constraintName = end($constraintName);
+                if (isset($constraint->message)) {
+                    $message = $constraint->message;
+                }  else {
+                    $message ='';
+                }
+
+                $result[$property][] = array(
+                    'constraint' => $constraintName,
+                    'message'    => $message,
+                );
+            }
+        }
+
+        return $result;
     }
 } 

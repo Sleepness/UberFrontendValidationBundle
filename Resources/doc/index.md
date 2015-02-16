@@ -29,4 +29,14 @@ public function registerBundles()
     );
 }
 ```
+
+### Step 3: Configure twig to make sure that you are using proper form theming
+
+```
+twig:
+  // some other options
+  form_themes:
+    - 'SleepnessUberFrontendValidationBundle:Form:fields.html.twig'
+```
+
 to be continue...
