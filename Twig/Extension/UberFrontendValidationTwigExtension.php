@@ -26,8 +26,8 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'validation_init' => new \Twig_Function_Method($this, 'getValidators', array('is_safe' => array('html'))),
-            'pure_field_name' => new \Twig_Function_Method($this, 'getFieldName', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('validation_init', 'getValidators', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('pure_field_name', 'getFieldName', array('is_safe' => array('html'))),
         );
     }
 
