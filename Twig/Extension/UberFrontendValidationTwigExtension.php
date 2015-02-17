@@ -7,7 +7,6 @@ namespace Sleepness\UberFrontendValidationBundle\Twig\Extension;
  */
 class UberFrontendValidationTwigExtension extends \Twig_Extension
 {
-
     /**
      * @var \Twig_Environment
      */
@@ -20,7 +19,6 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     {
         $this->twig = $twig;
     }
-
 
     /**
      * {@inheritdoc}
@@ -67,6 +65,6 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'uber_forntend_validation';
+        return 'uber_frontend_validation';
     }
 } 
