@@ -9,6 +9,20 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
 {
 
     /**
+     * @var \Twig_Environment
+     */
+    private $twig;
+
+    /**
+     * @param $twig
+     */
+    public function setTemplating($twig)
+    {
+        $this->twig = $twig;
+    }
+
+
+    /**
      * {@inheritdoc}
      */
     public function getFunctions()
@@ -24,7 +38,7 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
      */
     public function getValidators()
     {
-        // must return including scripts with validation rules
+        return $this->twig->render('SleepnessUberFrontendValidationBundle::validators.html.twig');
     }
 
     /**
@@ -37,13 +51,13 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     {
         $start = "[";
         $end = "]";
-        $string = " ".$field;
-        $ini = strpos($string,$start);
+        $string = " " . $field;
+        $ini = strpos($string, $start);
         if ($ini == 0) return "";
         $ini += strlen($start);
-        $len = strpos($string, $end,$ini) - $ini;
+        $len = strpos($string, $end, $ini) - $ini;
 
-        return substr($string,$ini,$len);
+        return substr($string, $ini, $len);
     }
 
     /**

@@ -1,2 +1,6 @@
-{# Include all validator scripts into page #}
-{{ validation_init() }}
+{# Block for display all form errors #}
+<div id="errors">
+</div>
+
+{# Include submitting validator script into page #}
+<script type="text/javascript" src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/submit_validation.js') }}"></script>

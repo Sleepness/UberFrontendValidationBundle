@@ -10,6 +10,9 @@
                  class="Sleepness\UberFrontendValidationBundle\Twig\Extension\UberFrontendValidationTwigExtension"
                  public="false">
             <tag name="twig.extension"/>
+            <call method="setTemplating">
+                <argument type="service" id="twig" />
+            </call>
         </service>
 
         <service id="uber_frontent_validation.form_extension"
