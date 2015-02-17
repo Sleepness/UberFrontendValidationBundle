@@ -61,8 +61,8 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
         foreach ($entityMetadata->properties as $property => $credentials) {
             $constraints = $entityMetadata->properties[$property]->constraints;
             foreach ($constraints as $key => $constraint) {
-                $constraintName = explode('\\', get_class($constraint));
-                $constraintName = end($constraintName);
+                $partsOfConstraintName = explode('\\', get_class($constraint));
+                $constraintName = end($partsOfConstraintName);
                 if (isset($constraint->message)) {
                     $message = $constraint->message;
                 }  else {
