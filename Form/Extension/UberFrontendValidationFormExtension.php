@@ -65,8 +65,8 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
                 $constraintName = end($partsOfConstraintName);
                 if (isset($constraint->message)) {
                     $message = $constraint->message;
-                }  else {
-                    $message ='';
+                } else {
+                    $message = '';
                 }
                 $additional = array();
                 if ($constraintName == 'Length') {
