@@ -16,6 +16,19 @@
 
 {% endblock form_widget_simple %}
 
+{%- block textarea_widget -%}
+    {% set field = pure_field_name(full_name) %}
+    {% set constraints = '' %}
+
+    {% if field != '_token' %}
+        {% for constraint in entity_constraints[field] %}
+            {% set constraints = constraints ~ " " ~ constraint["constraint"] %}
+        {% endfor %}
+    {% endif %}
+
+    <textarea data-constraint="{{ constraints }}" {{ block('widget_attributes') }}>{{ value }}</textarea>
+{%- endblock textarea_widget -%}
+
 {% block button_widget %}
     {%- if label is empty -%}
         {%- if label_format is not empty -%}
