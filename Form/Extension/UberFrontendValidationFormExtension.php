@@ -36,7 +36,6 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
         $formData = $config->getDataClass();
         $entityMetadata = $this->validator->getMetadataFor('Acme\DemoBundle\Entity\Post'); //return metadata of the entity
         $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($entityMetadata);
-        $view->vars['attr']['class'] = 'custom_form'; // play around and add dummy class for form
     }
 
     /**
