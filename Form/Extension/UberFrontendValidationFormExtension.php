@@ -34,10 +34,11 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     {
         $config = $form->getConfig();
         $formData = $config->getDataClass();
+        $entityMetadata = null;
         if ($formData != null) {
             $entityMetadata = $this->validator->getMetadataFor($formData);
-            $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($entityMetadata);
         }
+        $view->vars['entity_constraints'][] = $this->prepareConstraintsAttributes($entityMetadata);
     }
 
     /**
@@ -47,7 +48,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'field';
+        return 'form';
     }
 
     /**

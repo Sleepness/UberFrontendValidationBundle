@@ -8,7 +8,6 @@
             {% set constraints = constraints ~ " " ~ constraint["constraint"] %}
         {% endfor %}
     {% endif %}
-{{ dump(constraints) }}
     {% set type = type|default('text') %}
     <input data-constraint="{{ constraints }}"
            type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}
