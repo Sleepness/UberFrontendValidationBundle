@@ -34,8 +34,10 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     {
         $config = $form->getConfig();
         $formData = $config->getDataClass();
-        $entityMetadata = $this->validator->getMetadataFor('Acme\DemoBundle\Entity\Post'); //return metadata of the entity
-        $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($entityMetadata);
+        if ($formData != null) {
+            $entityMetadata = $this->validator->getMetadataFor($formData);
+            $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($entityMetadata);
+        }
     }
 
     /**
@@ -57,26 +59,28 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     private function prepareConstraintsAttributes($entityMetadata)
     {
         $result = array();
-        foreach ($entityMetadata->properties as $property => $credentials) {
-            $constraints = $entityMetadata->properties[$property]->constraints;
-            foreach ($constraints as $key => $constraint) {
-                $partsOfConstraintName = explode('\\', get_class($constraint));
-                $constraintName = end($partsOfConstraintName);
-                if (isset($constraint->message)) {
-                    $message = $constraint->message;
-                } else {
-                    $message = '';
+        if ($entityMetadata != null) {
+            foreach ($entityMetadata->properties as $property => $credentials) {
+                $constraints = $entityMetadata->properties[$property]->constraints;
+                foreach ($constraints as $key => $constraint) {
+                    $partsOfConstraintName = explode('\\', get_class($constraint));
+                    $constraintName = end($partsOfConstraintName);
+                    if (isset($constraint->message)) {
+                        $message = $constraint->message;
+                    } else {
+                        $message = '';
+                    }
+                    $additional = array();
+                    if ($constraintName == 'Length') {
+                        $additional['min'] = $constraint->min;
+                        $additional['max'] = $constraint->max;
+                    }
+                    $result[$property][] = array(
+                        'constraint' => $constraintName,
+                        'message'    => $message,
+                        'additional' => $additional,
+                    );
                 }
-                $additional = array();
-                if ($constraintName == 'Length') {
-                    $additional['min'] = $constraint->min;
-                    $additional['max'] = $constraint->max;
-                }
-                $result[$property][] = array(
-                    'constraint' => $constraintName,
-                    'message'    => $message,
-                    'additional' => $additional,
-                );
             }
         }
 
