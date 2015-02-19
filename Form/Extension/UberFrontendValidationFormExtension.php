@@ -24,7 +24,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     }
 
     /**
-     * Extend build form view to be able made some customization with fields
+     * Extend building form view to be able to customize form fields
      *
      * @param FormView $view
      * @param FormInterface $form
@@ -32,13 +32,16 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $config = $form->getConfig();
-        $formData = $config->getDataClass();
-        $entityMetadata = null;
-        if ($formData != null) {
-            $entityMetadata = $this->validator->getMetadataFor($formData);
+        $parentForm = $form->getParent();
+        if ($parentForm) {
+            $config = $parentForm->getConfig();
+            $dataClass = $config->getDataClass();
+            $entityMetadata = null;
+            if ($dataClass) {
+                $entityMetadata = $this->validator->getMetadataFor($dataClass);
+            }
+            $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($entityMetadata);
         }
-        $view->vars['entity_constraints'][] = $this->prepareConstraintsAttributes($entityMetadata);
     }
 
     /**
