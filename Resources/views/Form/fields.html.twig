@@ -1,43 +1,34 @@
 {% block form_widget_simple %}
-
-    {% set field = pure_field_name(full_name) %}
-    {% set constraints = '' %}
-
-    {% if field != '_token' and entity_constraints[field] is defined %}
-        {% for constraint in entity_constraints[field] %}
-            {% set constraints = constraints ~ " " ~ constraint["constraint"] %}
-        {% endfor %}
-    {% endif %}
     {% set type = type|default('text') %}
-    <input data-constraint="{{ constraints }}"
-           type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}
-           class="{{ constraints }}"/>
-
+    <input {{ block('constraint_attr') }}
+           type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} />
 {% endblock form_widget_simple %}
 
-{%- block textarea_widget -%}
-    {% set field = pure_field_name(full_name) %}
-    {% set constraints = '' %}
-
-    {% if field != '_token' and entity_constraints[field] is defined %}
-        {% for constraint in entity_constraints[field] %}
-            {% set constraints = constraints ~ " " ~ constraint["constraint"] %}
-        {% endfor %}
-    {% endif %}
-
-    <textarea data-constraint="{{ constraints }}" {{ block('widget_attributes') }}>{{ value }}</textarea>
-{%- endblock textarea_widget -%}
+{% block textarea_widget %}
+    <textarea {{ block('constraint_attr') }} {{ block('widget_attributes') }}>{{ value }}</textarea>
+{% endblock textarea_widget %}
 
 {% block button_widget %}
-    {%- if label is empty -%}
-        {%- if label_format is not empty -%}
+    {% if label is empty %}
+        {% if label_format is not empty %}
             {% set label = label_format|replace({
             '%name%': name,
             '%id%': id,
             }) %}
-        {%- else -%}
+        {% else %}
             {% set label = name|humanize %}
-        {%- endif -%}
-    {%- endif -%}
+        {% endif %}
+    {% endif %}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }} {% if type == 'submit' %}class="form_submit_button"{% endif %}>{{ label|trans({}, translation_domain) }}</button>
 {% endblock button_widget %}
+
+{% block constraint_attr %}
+    {% set field = pure_field_name(full_name) %}
+    {% set constraints = '' %}
+    {% if field != '_token' and entity_constraints[field] is defined %}
+        {% for constraint in entity_constraints[field] %}
+            {% set constraints = constraints ~ " " ~ constraint["constraint"] %}
+        {% endfor %}
+    {% endif %}
+    data-constraint="{{ constraints }}"
+{% endblock %}
