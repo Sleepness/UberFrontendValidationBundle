@@ -1,8 +1,7 @@
 $(document).ready(function () {
     $('.form_submit_button').on('click', function (e) {
-        $.each($('input[data-constraint]'), function (key, val) {
+        $.each($('*[data-constraint]'), function (key, val) {
             var errors = ($(val).attr('data-constraint')).split(' ');
-//                    if ($(val).attr('data-constraint') == 'NotBlank' && $(val).val() == '') {
             if (errors.length > 1) {
                 e.preventDefault();
                 e.stopPropagation();
