@@ -29,6 +29,6 @@
         {% for constraint in entity_constraints[full_name]|keys %}
             {% set constraints = constraints ~ " " ~ constraint %}
         {% endfor %}
-    {% endif %}
     data-constraint="{{ constraints }}"
+    {% endif %}
 {% endblock %}
