@@ -25,9 +25,9 @@
 {% block constraint_attr %}
     {% set field = pure_field_name(full_name) %}
     {% set constraints = '' %}
-    {% if field != '_token' and entity_constraints[field] is defined %}
-        {% for constraint in entity_constraints[field] %}
-            {% set constraints = constraints ~ " " ~ constraint["constraint"] %}
+    {% if field != '_token' and entity_constraints[full_name] is defined %}
+        {% for constraint in entity_constraints[full_name]|keys %}
+            {% set constraints = constraints ~ " " ~ constraint %}
         {% endfor %}
     {% endif %}
     data-constraint="{{ constraints }}"
