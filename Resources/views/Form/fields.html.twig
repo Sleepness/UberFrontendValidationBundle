@@ -27,7 +27,11 @@
     {% set constraints = '' %}
     {% if field != '_token' and entity_constraints[full_name] is defined %}
         {% for constraint in entity_constraints[full_name]|keys %}
-            {% set constraints = constraints ~ " " ~ constraint %}
+            {% if loop.index == loop.first %}
+                {% set constraints = constraint %}
+            {% else %}
+                {% set constraints = constraints ~ " " ~ constraint %}
+            {% endif %}
         {% endfor %}
     data-constraint="{{ constraints }}"
     {% endif %}
