@@ -3,14 +3,14 @@
  *
  * @constructor
  */
-function UberNotBlankValidationConstraint()
+function UberNotBlankValidationConstraint(field, additional)
 {
-    this.message = 'This {{value}} should not be blank';
+    this.message = 'Field {{value}} should not be blank';
 
-    this.validate = function (value) {
+    this.validate = function () {
         var errorsList = [];
-        if (value.length === 0) {
-            errorsList.push(this.message.replace('{{ value }}', String(value)));
+        if (field.val().length === 0) {
+            errorsList.push(this.message.replace('{{value}}', String(field.attr('name'))));
         }
 
         return errorsList;

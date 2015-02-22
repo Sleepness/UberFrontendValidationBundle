@@ -3,12 +3,16 @@
  *
  * @constructor
  */
-function UberLengthValidationConstraint() {
-    this.message = 'This {{value}} should not be longer than {{}} and shorter thatn {{}}';
+function UberLengthValidationConstraint(field, additional) {
 
-    this.validate = function (value) {
+    this.message = 'This {{value}} should not be longer than {{min}} and shorter than {{max}}';
+
+    this.validate = function () {
         var errorsList = [];
-        errorsList.push(this.message.replace('{{ value }}', String(value)));
+        this.message.replace('{{value}}', String(field.attr('name')));
+        this.message.replace('{{min}}', String(additional['min']));
+        this.message.replace('{{max}}', String(additional['max']));
+        errorsList.push(this.message);
 
         return errorsList;
     }
