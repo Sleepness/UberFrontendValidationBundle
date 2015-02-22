@@ -1,16 +1,16 @@
 SleepnessUberFrontendValidationBundle
 =====================
 
-This Bundle is a tool that may to care about client side validation for you, by using entity asserts of your app.
+This Bundle is a powerful tool to provide a client side validation of form data.
 
 Introduction
 ------------
 
 ### Separation of concern
 
-This bundle provide a powerful tool for client side validation, what based on your entities mappings.
+The validator validates objects against constraints mapped to your entities.
 
-N.B. This bundle supply only the basics assets, like `required`, 'min' and `max` length, etc.
+N.B. This bundle supports only basic constraints, like `NotBlank`, `Length`, `DateTime`, etc.
 
 ### Symfony compatibility
 
