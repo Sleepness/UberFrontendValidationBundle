@@ -6,7 +6,7 @@ $(document).ready(function () {
                 e.preventDefault();
                 e.stopPropagation();
                 $.each(errors, function (key, error) {
-                    $('#errors').append("<p>filed" + $(val).attr('name') + "cannot be" + error + "!</p>");
+                    $('#errors').append("<p>field " + $(val).attr('name') + " has error " + error + "!</p>");
                 });
             }
         });
