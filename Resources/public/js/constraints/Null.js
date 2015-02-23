@@ -3,7 +3,7 @@
  *
  * @constructor
  */
-function UberNullValidationConstraint()
+function UberNullValidationConstraint(field)
 {
     this.message = 'This {{value}} cannot be null';
 

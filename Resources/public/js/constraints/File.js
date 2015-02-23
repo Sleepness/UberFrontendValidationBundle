@@ -3,7 +3,7 @@
  *
  * @constructor
  */
-function UberFileValidationConstraint()
+function UberFileValidationConstraint(field)
 {
     this.message = 'This {{value}} must be a file!';
 

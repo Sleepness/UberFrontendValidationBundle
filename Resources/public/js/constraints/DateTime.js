@@ -3,7 +3,7 @@
  *
  * @constructor
  */
-function UberDateTimeValidationConstraint()
+function UberDateTimeValidationConstraint(field)
 {
     this.message = 'This {{value}} is not valid DateTime value';
 

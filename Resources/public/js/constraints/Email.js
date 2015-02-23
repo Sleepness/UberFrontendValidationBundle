@@ -3,7 +3,7 @@
  *
  * @constructor
  */
-function UberEmailValidationConstraint()
+function UberEmailValidationConstraint(field)
 {
     this.message = 'This {{value}} is not a valid email address';
 

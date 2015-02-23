@@ -3,7 +3,7 @@
  *
  * @constructor
  */
-function UberNotBlankValidationConstraint(field, additional) {
+function UberNotBlankValidationConstraint(field) {
     this.message = 'Field {{value}} should not be blank';
 
     this.validate = function () {

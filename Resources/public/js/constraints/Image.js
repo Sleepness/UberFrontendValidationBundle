@@ -3,7 +3,7 @@
  *
  * @constructor
  */
-function UberImageValidationConstraint()
+function UberImageValidationConstraint(field)
 {
     this.message = 'This {{value}} is not image!';
 
