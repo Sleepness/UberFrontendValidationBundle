@@ -12,7 +12,7 @@ function UberLengthValidationConstraint(field, additional) {
         if (field.val().length < additional['min'] || field.val().length > additional['max']) {
             error = this.message.replace('{{min}}', String(additional['min']));
             error = error.replace('{{max}}', String(additional['max']));
-            error = error.replace('{{value}}', String(field.attr('name')));
+            error = error.replace('{{value}}', String(parse_field_name(field.attr('name'))));
         }
 
         return error;
