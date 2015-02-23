@@ -69,7 +69,6 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
         $finish =  strrpos($fullFieldName, ']');
         $length = $finish - $start;
         $fieldName = substr($fullFieldName, $start, $length);
-
         if ($entityMetadata != null) {
             $entityProperties = $entityMetadata->properties;
             foreach ($entityProperties as $property => $credentials) {
@@ -85,6 +84,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
                 }
             }
         }
+
         return $result;
     }
 } 
