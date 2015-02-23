@@ -1,0 +1,11 @@
+/* Styles for form errors block and fields what have invalid value */
+#errors {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+    border-radius: 4px;
+}
+
+.invalid-field {
+    border-color: #a94442;
+}

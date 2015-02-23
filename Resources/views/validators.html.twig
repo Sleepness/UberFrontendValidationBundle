@@ -2,6 +2,8 @@
 <div id="errors">
 </div>
 
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/sleepnessuberfrontendvalidation/css/validation.css') }}">
+
 {# Include all validators #}
 <script type="text/javascript" src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/constraints/NotBlank.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/constraints/DateTime.js') }}"></script>
@@ -9,6 +11,7 @@
 <script type="text/javascript" src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/constraints/File.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/constraints/Image.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/constraints/Null.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/constraints/Length.js') }}"></script>
 
 {# Include submitting validator script into page #}
 <script type="text/javascript" src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/submit_validation.js') }}"></script>
