@@ -7,12 +7,12 @@ function UberFileValidationConstraint(field)
 {
     this.message = 'This {{value}} must be a file!';
 
-    this.validate = function (value) {
-        var errorsList = [];
-        if (!value instanceof File) {
-            errorsList.push(this.message.replace('{{ value }}', String(value)));
+    this.validate = function () {
+        var error = '';
+        if (!field.val() instanceof File) {
+            error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
         }
 
-        return errorsList;
+        return error;
     }
 }

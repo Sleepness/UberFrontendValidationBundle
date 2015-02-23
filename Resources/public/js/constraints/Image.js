@@ -7,12 +7,12 @@ function UberImageValidationConstraint(field)
 {
     this.message = 'This {{value}} is not image!';
 
-    this.validate = function (value) {
-        var errorsList = [];
-        if (!value instanceof HTMLImageElement) {
-            errorsList.push(this.message.replace('{{ value }}', String(value)));
+    this.validate = function () {
+        var error = '';
+        if (!field.val() instanceof HTMLImageElement) {
+            error = this.message.replace('{{ value }}', String(value));
         }
 
-        return errorsList;
+        return error;
     }
 }

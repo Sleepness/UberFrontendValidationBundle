@@ -7,13 +7,13 @@ function UberDateTimeValidationConstraint(field)
 {
     this.message = 'This {{value}} is not valid DateTime value';
 
-    this.validate = function (value) {
+    this.validate = function () {
         var pattern = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/;
-        var errorsList = [];
-        if (!pattern.test(value)) {
-            errorsList.push(this.message.replace('{{ value }}', String(value)));
+        var error = '';
+        if (!pattern.test(field.val())) {
+            error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
         }
 
-        return errorsList;
+        return error;
     }
 }
