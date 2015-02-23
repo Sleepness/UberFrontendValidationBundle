@@ -41,8 +41,8 @@ twig:
 
 ### Additional:
 
-Note, if you create submit button, you in safe, else, make sure that you add `class="form_submit_button"` attribute to form field.
-E.g. it may looks like:
+Note, if you create submit button using form builder, - you are safe, else, - add `class="form_submit_button"` attribute to your form's submitting field.
+E.g., it may look like this:
 
 ```html
 <form method="post" {{form_enctype(form)}} >

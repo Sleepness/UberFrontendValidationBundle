@@ -32,6 +32,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        $fullFieldName = $view->vars['full_name'];
         $parentForm = $form->getParent();
         if ($parentForm) {
             $config = $parentForm->getConfig();
@@ -40,12 +41,12 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
             if ($dataClass) {
                 $entityMetadata = $this->validator->getMetadataFor($dataClass);
             }
-            $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($entityMetadata);
+            $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fullFieldName, $entityMetadata);
         }
     }
 
     /**
-     * Returns the name of the type being extended.
+     * Return the name of the type being extended
      *
      * @return string The name of the type being extended
      */
@@ -55,39 +56,35 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     }
 
     /**
-     * Prepare array ith constraints based on entity metadata
+     * Prepare array of constraints based on entity metadata
      *
+     * @param $fullFieldName
      * @param $entityMetadata
      * @return array
      */
-    private function prepareConstraintsAttributes($entityMetadata)
+    private function prepareConstraintsAttributes($fullFieldName, $entityMetadata)
     {
         $result = array();
+        $start = strrpos($fullFieldName, '[') + 1;
+        $finish =  strrpos($fullFieldName, ']');
+        $length = $finish - $start;
+        $fieldName = substr($fullFieldName, $start, $length);
+
         if ($entityMetadata != null) {
-            foreach ($entityMetadata->properties as $property => $credentials) {
-                $constraints = $entityMetadata->properties[$property]->constraints;
-                foreach ($constraints as $key => $constraint) {
-                    $partsOfConstraintName = explode('\\', get_class($constraint));
-                    $constraintName = end($partsOfConstraintName);
-                    if (isset($constraint->message)) {
-                        $message = $constraint->message;
-                    } else {
-                        $message = '';
+            $entityProperties = $entityMetadata->properties;
+            foreach ($entityProperties as $property => $credentials) {
+                if ($property == $fieldName) {
+                    $constraints = $entityProperties[$property]->constraints;
+                    foreach ($constraints as $constraint) {
+                        $partsOfConstraintName = explode('\\', get_class($constraint));
+                        $constraintName = end($partsOfConstraintName);
+                        foreach ($constraint as $constraintProperty => $constraintValue) {
+                            $result[$fullFieldName][$constraintName][$constraintProperty] = $constraintValue;
+                        }
                     }
-                    $additional = array();
-                    if ($constraintName == 'Length') {
-                        $additional['min'] = $constraint->min;
-                        $additional['max'] = $constraint->max;
-                    }
-                    $result[$property][] = array(
-                        'constraint' => $constraintName,
-                        'message'    => $message,
-                        'additional' => $additional,
-                    );
                 }
             }
         }
-
         return $result;
     }
 } 
