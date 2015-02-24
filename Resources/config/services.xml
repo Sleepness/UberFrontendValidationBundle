@@ -8,7 +8,7 @@
 
         <service id="uber_frontent_validation.twig_extension"
                  class="Sleepness\UberFrontendValidationBundle\Twig\Extension\UberFrontendValidationTwigExtension"
-                 public="false">
+                 public="true">
             <tag name="twig.extension"/>
             <call method="setTemplating">
                 <argument type="service" id="twig" />
