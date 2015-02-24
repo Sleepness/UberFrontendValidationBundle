@@ -10,7 +10,7 @@ function UberEmailValidationConstraint(field)
     this.validate = function () {
         var error = '';
         var pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-        if (!pattern.test(value)) {
+        if (!pattern.test(field.val())) {
             error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
         }
 
