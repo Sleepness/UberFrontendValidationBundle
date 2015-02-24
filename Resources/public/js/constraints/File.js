@@ -9,7 +9,8 @@ function UberFileValidationConstraint(field)
 
     this.validate = function () {
         var error = '';
-        if (!field.val() instanceof File) {
+        var field_id = field.attr('id');
+        if (((document.getElementById(field_id).files.length) == 0) || field.val() == '') {
             error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
         }
 
