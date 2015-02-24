@@ -28,8 +28,8 @@
     {% if field != '_token' and entity_constraints[full_name] is defined %}
         {% for constraint in entity_constraints[full_name]|keys %}
             {% if constraint == 'Length' %}
-                data-min="{{ entity_constraints[full_name][constraint]['min'] }}"
-                data-max="{{ entity_constraints[full_name][constraint]['max'] }}"
+                data-min="{{ (entity_constraints[full_name][constraint]['min'] != null) ? entity_constraints[full_name][constraint]['min'] : 0 }}"
+                data-max="{{ (entity_constraints[full_name][constraint]['max'] != null) ? entity_constraints[full_name][constraint]['max'] : 1000 }}"
             {% endif %}
             {% if loop.index == loop.first %}
                 {% set constraints = constraint %}
