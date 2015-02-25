@@ -1,7 +1,7 @@
 {% block form_widget_simple %}
     {% set type = type|default('text') %}
     <input {{ block('constraint_attr') }}
-           type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} />
+            type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} />
 {% endblock form_widget_simple %}
 
 {% block textarea_widget %}
@@ -31,12 +31,17 @@
                 data-min="{{ (entity_constraints[full_name][constraint]['min'] != null) ? entity_constraints[full_name][constraint]['min'] : 0 }}"
                 data-max="{{ (entity_constraints[full_name][constraint]['max'] != null) ? entity_constraints[full_name][constraint]['max'] : 1000 }}"
             {% endif %}
+
+            {% if entity_constraints[full_name][constraint]['message'] is defined%}
+                data-message="{{ entity_constraints[full_name][constraint]['message'] }}"
+            {% endif %}
+
             {% if loop.index == loop.first %}
                 {% set constraints = constraint %}
             {% else %}
                 {% set constraints = constraints ~ " " ~ constraint %}
             {% endif %}
         {% endfor %}
-    data-constraint="{{ constraints }}"
+        data-constraint="{{ constraints }}"
     {% endif %}
 {% endblock %}
