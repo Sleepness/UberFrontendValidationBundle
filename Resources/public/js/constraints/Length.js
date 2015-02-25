@@ -13,6 +13,9 @@ function UberLengthValidationConstraint(field) {
             error = this.message.replace('{{min}}', String(field.attr('data-min')));
             error = error.replace('{{max}}', String(field.attr('data-max')));
             error = error.replace('{{value}}', String(parse_field_name(field.attr('name'))));
+            if (field.attr('data-min-message') && field.attr('data-max-message')) {
+                error = field.attr('data-min-message') + field.attr('data-max-message');
+            }
         }
 
         return error;

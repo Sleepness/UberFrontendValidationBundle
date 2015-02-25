@@ -27,12 +27,25 @@
     {% set constraints = '' %}
     {% if field != '_token' and entity_constraints[full_name] is defined %}
         {% for constraint in entity_constraints[full_name]|keys %}
+            {#{{ dump(entity_constraints) }}#}
             {% if constraint == 'Length' %}
                 data-min="{{ (entity_constraints[full_name][constraint]['min'] != null) ? entity_constraints[full_name][constraint]['min'] : 0 }}"
                 data-max="{{ (entity_constraints[full_name][constraint]['max'] != null) ? entity_constraints[full_name][constraint]['max'] : 1000 }}"
+                data-min-message="{{ entity_constraints[full_name][constraint]['minMessage'] }}"
+                data-max-message="{{ entity_constraints[full_name][constraint]['maxMessage'] }}"
             {% endif %}
 
-            {% if entity_constraints[full_name][constraint]['message'] is defined%}
+            {% if constraint == 'File' %}
+                data-maxSize="{{ entity_constraints[full_name][constraint]['maxSize'] }}"
+                data-size-message="{{ entity_constraints[full_name][constraint]['maxSizeMessage'] }}"
+                data-message="{{ entity_constraints[full_name][constraint]['uploadNoFileErrorMessage'] }}"
+            {% endif %}
+
+            {% if entity_constraints[full_name][constraint]['message'] is defined %}
+                data-message="{{ entity_constraints[full_name][constraint]['message'] }}"
+            {% endif %}
+
+            {% if entity_constraints[full_name][constraint]['message'] is defined %}
                 data-message="{{ entity_constraints[full_name][constraint]['message'] }}"
             {% endif %}
 
