@@ -23,7 +23,8 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
      *
      * @param $assetHelper
      */
-    public function setAssetHelper($assetHelper) {
+    public function setAssetHelper($assetHelper)
+    {
         $this->assetHelper = $assetHelper;
     }
 
@@ -53,7 +54,15 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
      */
     public function getValidators($form)
     {
-//        return $this->twig->render('SleepnessUberFrontendValidationBundle::validators.html.twig');
+        $output = '';
+        $validators = $this->factory->getCurrentValidators($form->vars['value']);
+        $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/field_name_parser.js') . '"></script>';
+        $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/submit_validation.js') . '"></script>';
+        foreach ($validators as $key => $validator) {
+            $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/constraints/' . $validator . '.js') . '"></script>';
+        }
+
+        return $output;
     }
 
     /**

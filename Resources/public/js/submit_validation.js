@@ -1,6 +1,7 @@
 (function($) {
     $(document).ready(function () {
         $('.form_submit_button').on('click', function (e) {
+            console.log('fsdfsdfsd');
             $('#errors').html("");
             $.each($('*[data-constraint]'), function (key, val) {
                 var errors = ($(val).attr('data-constraint')).split(' ');

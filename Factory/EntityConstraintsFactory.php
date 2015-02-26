@@ -24,8 +24,35 @@ class EntityConstraintsFactory
         $this->validator = $validator;
     }
 
+    /**
+     * Get metadata for given class
+     *
+     * @param $dataClass
+     * @return \Symfony\Component\Validator\MetadataInterface
+     */
     public function getConstraints($dataClass)
     {
         return $this->validator->getMetadataFor($dataClass);
+    }
+
+    /**
+     * @param $dataClass
+     * @return array
+     */
+    public function getCurrentValidators($dataClass)
+    {
+        $validators = array();
+        $properties = $this->getConstraints($dataClass)->properties;
+        foreach ($properties as $property => $property_metadata) {
+            foreach ($property_metadata->constraints as $key => $constraint) {
+                $namespaceParts = explode('\\', get_class($constraint));
+                $constraintName = end($namespaceParts);
+                if (!in_array($constraintName, $validators)) {
+                    $validators[] = $constraintName;
+                }
+            }
+        }
+
+        return $validators;
     }
 } 

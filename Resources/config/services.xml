@@ -13,6 +13,9 @@
             <call method="setAssetHelper">
                 <argument type="service" id="twig.extension.assets" />
             </call>
+            <call method="setConstraintsFactory">
+                <argument type="service" id="uber_frontent_validation.entity_constraints_factory" />
+            </call>
         </service>
 
         <service id="uber_frontent_validation.form_extension"
