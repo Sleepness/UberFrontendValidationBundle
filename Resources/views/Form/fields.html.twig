@@ -49,10 +49,6 @@
                 data-message="{{ entity_constraints[full_name][constraint]['message'] }}"
             {% endif %}
 
-            {% if entity_constraints[full_name][constraint]['message'] is defined %}
-                data-message="{{ entity_constraints[full_name][constraint]['message'] }}"
-            {% endif %}
-
             {% if loop.index == loop.first %}
                 {% set constraints = constraint %}
             {% else %}
