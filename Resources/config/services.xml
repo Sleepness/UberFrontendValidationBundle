@@ -18,6 +18,13 @@
         <service id="uber_frontent_validation.form_extension"
                  class="Sleepness\UberFrontendValidationBundle\Form\Extension\UberFrontendValidationFormExtension">
             <tag name="form.type_extension" alias="form"/>
+            <call method="setConstraintsFactory">
+                <argument type="service" id="uber_frontent_validation.entity_constraints_factory" />
+            </call>
+        </service>
+
+        <service id="uber_frontent_validation.entity_constraints_factory"
+                 class="Sleepness\UberFrontendValidationBundle\Factory\EntityConstraintsFactory">
             <call method="setValidator">
                 <argument type="service" id="validator" />
             </call>

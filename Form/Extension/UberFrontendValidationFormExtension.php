@@ -5,22 +5,27 @@ namespace Sleepness\UberFrontendValidationBundle\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Validator;
 
 /**
  * Class that will extend base form abilities
  */
 class UberFrontendValidationFormExtension extends AbstractTypeExtension
 {
-    private $validator;
+
+    /**
+     * @var \Sleepness\UberFrontendValidationBundle\Factory\EntityConstraintsFactory
+     */
+    private $factory;
 
     /**
      * Set validator service for be able to get entity metadata
      *
-     * @param $validator
+     * @param $factory
      */
-    public function setValidator($validator)
+    public function setConstraintsFactory($factory)
     {
-        $this->validator = $validator;
+        $this->factory = $factory;
     }
 
     /**
@@ -39,7 +44,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
             $dataClass = $config->getDataClass();
             $entityMetadata = null;
             if ($dataClass) {
-                $entityMetadata = $this->validator->getMetadataFor($dataClass);
+                $entityMetadata = $this->factory->getConstraints($dataClass);
             }
             $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fullFieldName, $entityMetadata);
         }

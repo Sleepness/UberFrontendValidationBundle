@@ -13,8 +13,28 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
      */
     private $assetHelper;
 
+    /**
+     * @var \Sleepness\UberFrontendValidationBundle\Factory\EntityConstraintsFactory
+     */
+    private $factory;
+
+    /**
+     * Set asset helper that
+     *
+     * @param $assetHelper
+     */
     public function setAssetHelper($assetHelper) {
         $this->assetHelper = $assetHelper;
+    }
+
+    /**
+     * Set validator service for be able to get entity metadata
+     *
+     * @param $factory
+     */
+    public function setConstraintsFactory($factory)
+    {
+        $this->factory = $factory;
     }
 
     /**
