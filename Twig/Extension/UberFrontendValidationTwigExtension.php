@@ -7,17 +7,14 @@ namespace Sleepness\UberFrontendValidationBundle\Twig\Extension;
  */
 class UberFrontendValidationTwigExtension extends \Twig_Extension
 {
-    /**
-     * @var \Twig_Environment
-     */
-    private $twig;
 
     /**
-     * @param $twig
+     * @var \Symfony\Bundle\TwigBundle\Extension\AssetsExtension
      */
-    public function setTemplating($twig)
-    {
-        $this->twig = $twig;
+    private $assetHelper;
+
+    public function setAssetHelper($assetHelper) {
+        $this->assetHelper = $assetHelper;
     }
 
     /**
@@ -34,9 +31,9 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     /**
      * Will return including all javascript files for validation
      */
-    public function getValidators()
+    public function getValidators($form)
     {
-        return $this->twig->render('SleepnessUberFrontendValidationBundle::validators.html.twig');
+//        return $this->twig->render('SleepnessUberFrontendValidationBundle::validators.html.twig');
     }
 
     /**

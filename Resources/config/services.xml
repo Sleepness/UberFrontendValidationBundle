@@ -10,8 +10,8 @@
                  class="Sleepness\UberFrontendValidationBundle\Twig\Extension\UberFrontendValidationTwigExtension"
                  public="true">
             <tag name="twig.extension"/>
-            <call method="setTemplating">
-                <argument type="service" id="twig" />
+            <call method="setAssetHelper">
+                <argument type="service" id="twig.extension.assets" />
             </call>
         </service>
 
