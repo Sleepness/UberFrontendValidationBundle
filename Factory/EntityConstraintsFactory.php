@@ -6,6 +6,8 @@ use Symfony\Component\Validator\Validator;
 
 /**
  * Factory class what provide entity metadata(constraints) for given entity
+ *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
  */
 class EntityConstraintsFactory
 {

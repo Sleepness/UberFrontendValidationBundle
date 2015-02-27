@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * Test twig extension for validation
+ *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
+ * @author Alexandr Zhulev
  */
 class UberFrontendValidationTwigExtensionTest extends WebTestCase
 {

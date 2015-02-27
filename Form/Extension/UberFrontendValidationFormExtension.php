@@ -9,6 +9,9 @@ use Symfony\Component\Validator\Validator;
 
 /**
  * Class that will extend base form abilities
+ *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
+ * @author Alexandr Zhulev
  */
 class UberFrontendValidationFormExtension extends AbstractTypeExtension
 {
