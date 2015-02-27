@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
- * Test suite for factory class what provide entity metadata(constraints) for given entity
+ * Test suite for factory class that provides metadata (constraints) for given entity
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  */
@@ -22,9 +22,20 @@ class EntityConstraintsFactoryTest extends WebTestCase
      */
     public function testGetEntityMetadata()
     {
-        $constraints =  $this->factory->getEntityMetadata('Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity\Post');
+        $constraints = $this->factory->getEntityMetadata('Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity\Post');
         $this->assertTrue(is_object($constraints));
         $this->assertTrue($constraints instanceof ClassMetadata);
+    }
+
+    /**
+     * Test getting array of validators for given class
+     */
+    public function testGetCurrentValidators()
+    {
+        $validators = $this->factory->getCurrentValidators('Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity\Post');
+        $this->assertEquals('NotBlank', $validators[0]);
+        $this->assertEquals('Length', $validators[1]);
+        $this->assertEquals('Email', $validators[3]);
     }
 
     /**
