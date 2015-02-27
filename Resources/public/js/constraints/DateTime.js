@@ -13,6 +13,9 @@ function UberDateTimeValidationConstraint(field)
         var error = '';
         if (!pattern.test(field.val())) {
             error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
+            if (field.attr('data-message') != '') {
+                error = field.attr('data-message');
+            }
         }
 
         return error;
