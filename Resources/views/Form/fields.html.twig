@@ -1,11 +1,11 @@
 {% block form_widget_simple %}
     {% set type = type|default('text') %}
-    <input {{ block('constraint_attr') }}
-            type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} />
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}
+            {{ block('constraint_attr') }}/>
 {% endblock form_widget_simple %}
 
 {% block textarea_widget %}
-    <textarea {{ block('constraint_attr') }} {{ block('widget_attributes') }}>{{ value }}</textarea>
+    <textarea {{ block('widget_attributes') }} {{ block('constraint_attr') }}>{{ value }}</textarea>
 {% endblock textarea_widget %}
 
 {% block button_widget %}
@@ -19,7 +19,9 @@
             {% set label = name|humanize %}
         {% endif %}
     {% endif %}
-    <button type="{{ type|default('button') }}" {{ block('button_attributes') }} {% if type == 'submit' %}class="form_submit_button"{% endif %}>{{ label|trans({}, translation_domain) }}</button>
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }} {% if type == 'submit' %}class="form_submit_button"{% endif %}>
+        {{ label|trans({}, translation_domain) }}
+    </button>
 {% endblock button_widget %}
 
 {% block constraint_attr %}
@@ -43,10 +45,6 @@
 
             {% if constraint == 'Image' %}
                 data-message="{{ entity_constraints[full_name][constraint]['mimeTypesMessage'] }}"
-            {% endif %}
-
-            {% if entity_constraints[full_name][constraint]['message'] is defined %}
-                data-message="{{ entity_constraints[full_name][constraint]['message'] }}"
             {% endif %}
 
             {% if entity_constraints[full_name][constraint]['message'] is defined %}
