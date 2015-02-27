@@ -35,7 +35,7 @@ class EntityConstraintsFactoryTest extends WebTestCase
         $validators = $this->factory->getCurrentValidators('Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity\Post');
         $this->assertEquals('NotBlank', $validators[0]);
         $this->assertEquals('Length', $validators[1]);
-        $this->assertEquals('Email', $validators[3]);
+        $this->assertEquals('Email', $validators[2]);
     }
 
     /**
