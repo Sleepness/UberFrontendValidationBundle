@@ -6,6 +6,7 @@ namespace Sleepness\UberFrontendValidationBundle\Twig\Extension;
  * Extension, that provide some base twig functions for including javascript files, etc.
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
+ * @author Alexandr Zhulev <alexandrzhulev@gmail.com>
  */
 class UberFrontendValidationTwigExtension extends \Twig_Extension
 {
