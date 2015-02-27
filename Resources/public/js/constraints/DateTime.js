@@ -1,6 +1,7 @@
 /**
  * Check if element value is valid DateTime value
  *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
 function UberDateTimeValidationConstraint(field)

@@ -1,6 +1,7 @@
 /**
  * Check if element is file
  *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
 function UberFileValidationConstraint(field)

@@ -1,3 +1,8 @@
+/**
+ * This is the client side validation init script, that triggered when user click on submit button
+ *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
+ */
 (function($) {
     $(document).ready(function () {
         $('.form_submit_button').on('click', function (e) {

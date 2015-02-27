@@ -1,6 +1,7 @@
 /**
  * Check if field does not empty
  *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
 function UberNotBlankValidationConstraint(field) {

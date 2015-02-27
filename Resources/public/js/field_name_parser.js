@@ -1,6 +1,7 @@
 /**
  * Return pure field name without
  *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @param name
  * @returns {*}
  */

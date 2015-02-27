@@ -1,6 +1,7 @@
 /**
  * Check if field has proper length
  *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
 function UberLengthValidationConstraint(field) {

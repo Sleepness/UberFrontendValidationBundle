@@ -1,3 +1,13 @@
+{#
+/**
+ * @file
+ * Form theme for client side validation
+ *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
+ * @author Alexandr Zhulev
+ */
+#}
+
 {% block form_widget_simple %}
     {% set type = type|default('text') %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}

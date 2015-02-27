@@ -1,6 +1,7 @@
 /**
  * Check if element not null
  *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
 function UberNullValidationConstraint(field)

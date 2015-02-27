@@ -1,6 +1,7 @@
 /**
  * Check if element is image
  *
+ * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
 function UberImageValidationConstraint(field)
