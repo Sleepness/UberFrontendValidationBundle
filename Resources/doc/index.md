@@ -39,16 +39,23 @@ twig:
     - 'SleepnessUberFrontendValidationBundle:Form:fields.html.twig'
 ```
 
-### Additional:
+### Step 4: Proper displaying of form
 
-Note, if you create submit button using form builder, - you are safe, else, - add `class="form_submit_button"` attribute to your form's submitting field.
-E.g., it may look like this:
+Your twig template with form may look like this
 
 ```html
+
+{{ validation_init(form) }}
+
 <form method="post" {{form_enctype(form)}} >
     {{ form_widget(form) }}
     <button type="submit" class="form_submit_button">Save</button>
 </form>
 ```
+
+### Additional:
+
+#### Note.
+If you create submit button using form builder, - you are safe, else, - add `class="form_submit_button"` attribute to your form's submitting field.
 
 to be continue...
