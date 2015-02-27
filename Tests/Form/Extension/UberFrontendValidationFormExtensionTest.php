@@ -32,6 +32,6 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
     {
         static::bootKernel(array());
         $container = static::$kernel->getContainer();
-        $this->extension = $container->get('uber_frontent_validation.form_extension');
+        $this->extension = $container->get('uber_frontend_validation.form_extension');
     }
 }

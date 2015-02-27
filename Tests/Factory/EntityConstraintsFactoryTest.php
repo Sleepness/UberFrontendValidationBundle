@@ -34,6 +34,6 @@ class EntityConstraintsFactoryTest extends WebTestCase
     {
         static::bootKernel(array());
         $container = static::$kernel->getContainer();
-        $this->factory = $container->get('uber_frontent_validation.entity_constraints_factory');
+        $this->factory = $container->get('uber_frontend_validation.entity_constraints_factory');
     }
 }

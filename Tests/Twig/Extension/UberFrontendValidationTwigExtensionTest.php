@@ -35,6 +35,6 @@ class UberFrontendValidationTwigExtensionTest extends WebTestCase
     {
         static::bootKernel(array());
         $container = static::$kernel->getContainer();
-        $this->extension = $container->get('uber_frontent_validation.twig_extension');
+        $this->extension = $container->get('uber_frontend_validation.twig_extension');
     }
 } 
