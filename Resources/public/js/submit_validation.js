@@ -14,7 +14,7 @@
                             e.preventDefault();
                             e.stopPropagation();
                             $(val).addClass('invalid-field');
-                            $('#errors').append("<p>" + errorMessage + "</p>");
+                            $(val).parent('div').append("<p class='errors'>" + errorMessage + "</p>");
                         }
                     });
                 }
