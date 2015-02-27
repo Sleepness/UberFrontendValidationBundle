@@ -22,7 +22,7 @@ class EntityConstraintsFactoryTest extends WebTestCase
      */
     public function testGetEntityMetadata()
     {
-        $constraints =  $this->factory->getEntityMetadata('Acme\DemoBundle\Entity\Post');
+        $constraints =  $this->factory->getEntityMetadata('Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity\Post');
         $this->assertTrue(is_object($constraints));
         $this->assertTrue($constraints instanceof ClassMetadata);
     }
