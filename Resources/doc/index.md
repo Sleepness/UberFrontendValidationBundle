@@ -56,6 +56,9 @@ Your twig template with form may look like this
 ### Additional:
 
 #### Note.
-If you create submit button using form builder, - you are safe, else, - add `class="form_submit_button"` attribute to your form's submitting field.
+1) If you create submit button using form builder, - you are safe, else, - add `class="form_submit_button"` attribute to your form's submitting field.
+
+2) DateTime validator works only if your choose `single_text` widget for it, e.g. in your FormType
+`->add('date', 'datetime', ['widget' => 'single_text'])`
 
 to be continue...
