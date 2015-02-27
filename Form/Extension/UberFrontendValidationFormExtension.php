@@ -44,7 +44,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
             $dataClass = $config->getDataClass();
             $entityMetadata = null;
             if ($dataClass) {
-                $entityMetadata = $this->factory->getConstraints($dataClass);
+                $entityMetadata = $this->factory->getEntityMetadata($dataClass);
             }
             $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fullFieldName, $entityMetadata);
         }

@@ -30,7 +30,7 @@ class EntityConstraintsFactory
      * @param $dataClass
      * @return \Symfony\Component\Validator\MetadataInterface
      */
-    public function getConstraints($dataClass)
+    public function getEntityMetadata($dataClass)
     {
         return $this->validator->getMetadataFor($dataClass);
     }
@@ -42,7 +42,7 @@ class EntityConstraintsFactory
     public function getCurrentValidators($dataClass)
     {
         $validators = array();
-        $properties = $this->getConstraints($dataClass)->properties;
+        $properties = $this->getEntityMetadata($dataClass)->properties;
         foreach ($properties as $property => $property_metadata) {
             foreach ($property_metadata->constraints as $key => $constraint) {
                 $namespaceParts = explode('\\', get_class($constraint));
