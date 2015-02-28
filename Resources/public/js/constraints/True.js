@@ -4,8 +4,7 @@
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
-function UberTrueValidationConstraint(field)
-{
+function UberTrueValidationConstraint(field) {
     this.message = 'This {{value}} must have boolean value TRUE';
 
     this.validate = function () {
