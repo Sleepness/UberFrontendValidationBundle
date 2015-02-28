@@ -4,8 +4,7 @@
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
-function UberImageValidationConstraint(field)
-{
+function UberImageValidationConstraint(field) {
     this.message = 'This {{value}} is not image!';
 
     this.validate = function () {

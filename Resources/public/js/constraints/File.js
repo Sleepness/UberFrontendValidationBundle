@@ -4,8 +4,7 @@
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
-function UberFileValidationConstraint(field)
-{
+function UberFileValidationConstraint(field) {
     this.message = 'This {{value}} must be a file!';
 
     this.validate = function () {

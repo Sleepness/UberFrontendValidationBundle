@@ -4,8 +4,7 @@
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
-function UberDateTimeValidationConstraint(field)
-{
+function UberDateTimeValidationConstraint(field) {
     this.message = 'This {{value}} is not valid DateTime value';
 
     this.validate = function () {

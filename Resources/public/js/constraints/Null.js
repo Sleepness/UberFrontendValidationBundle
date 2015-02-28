@@ -4,8 +4,7 @@
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
-function UberNullValidationConstraint(field)
-{
+function UberNullValidationConstraint(field) {
     this.message = 'This {{value}} cannot be null';
 
     this.validate = function () {
