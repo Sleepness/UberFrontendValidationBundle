@@ -5,7 +5,7 @@ namespace Sleepness\UberFrontendValidationBundle\Factory;
 use Symfony\Component\Validator\Validator;
 
 /**
- * Factory class what provide entity metadata(constraints) for given entity
+ * Factory class that provides metadata (constraints) for given entity
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  */
@@ -17,7 +17,7 @@ class EntityConstraintsFactory
     private $validator;
 
     /**
-     * Set validator service for be able to get entity metadata
+     * Set validator service to be able to get entity metadata
      *
      * @param $validator
      */
@@ -38,6 +38,8 @@ class EntityConstraintsFactory
     }
 
     /**
+     * Get array of validators for given class
+     *
      * @param $dataClass
      * @return array
      */
