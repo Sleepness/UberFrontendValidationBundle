@@ -5,9 +5,17 @@
  * @constructor
  */
 function UberTrueValidationConstraint(field) {
-    this.message = 'This {{value}} must have boolean value TRUE';
+    this.message = 'Value of {{value}} must have boolean value TRUE';
 
     this.validate = function () {
+        var error = '';
+        if (field.val() != true) {
+            error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
+            if (field.attr('data-message') != '') {
+                error = field.attr('data-message');
+            }
+        }
 
+        return error;
     }
 }
