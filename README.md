@@ -15,8 +15,11 @@ into friendly client side validation.
 This bundle supports the following constraints:
 Basic Constraints:
 - NotBlank
+- Blank
+- NotNull
 - Null
 - True
+- False
 
 String Constraints:
 - Email
