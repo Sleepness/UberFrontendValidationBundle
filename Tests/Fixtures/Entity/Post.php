@@ -4,7 +4,6 @@ namespace Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * This entity is required for test suite of this project
@@ -46,11 +45,6 @@ class Post
      * @Assert\Length(min=18, minMessage = "This value should be longer than 18 chars")
      */
     private $content;
-
-    /**
-     * @ORM\Column(name="slug_title", type="string", length=255, nullable=true)
-     */
-    private $slug_title;
 
     /**
      * @return integer
@@ -99,56 +93,17 @@ class Post
     }
 
     /**
-     * @param $slug_title
-     * @return $this
-     */
-    public function setSlugTitle($slug_title)
-    {
-        $this->slug_title = $slug_title;
-
-        return $this;
-    }
-
-    /**
-     * @Assert\Image(maxSize="100")
-     */
-    private $file;
-
-    /**
-     * @return UploadedFile
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    /**
-     * @param UploadedFile $file
-     */
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-        if (isset($this->path)) {
-            $this->temp = $this->path;
-            $this->path = null;
-        } else {
-            $this->path = 'initial';
-        }
-    }
-
-    /**
      * @return mixed
      */
-    public function getSlugTitle()
-    {
-        return $this->slug_title;
-    }
-
     public function getEmail()
     {
         return $this->email;
     }
 
+    /**
+     * @param $mail
+     * @return $this
+     */
     public function setEmail($mail)
     {
         $this->email = $mail;
