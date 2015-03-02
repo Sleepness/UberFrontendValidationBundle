@@ -2,6 +2,7 @@
 
 namespace Sleepness\UberFrontendValidationBundle\Tests\Twig\Extension;
 
+use Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -26,6 +27,14 @@ class UberFrontendValidationTwigExtensionTest extends WebTestCase
         $pureFieldName = $this->extension->getFieldName($fieldName);
 
         $this->assertEquals('title', $pureFieldName);
+    }
+
+    /**
+     * Test twig function that returns included JS-files with constraints
+     */
+    public function testGetValidators()
+    {
+        // @ToDO implement this method
     }
 
     /**

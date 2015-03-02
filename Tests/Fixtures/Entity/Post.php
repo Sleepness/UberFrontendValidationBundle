@@ -15,13 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Post
 {
     /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @ORM\Column(name="title", type="string", length=255)
      * @Assert\NotBlank(message="Title should not be blank!")
      * @Assert\Length(min=8, minMessage = "This value should be longer than 8 chars")
@@ -45,14 +38,6 @@ class Post
      * @Assert\Length(min=18, minMessage = "This value should be longer than 18 chars")
      */
     private $content;
-
-    /**
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * @param $title
