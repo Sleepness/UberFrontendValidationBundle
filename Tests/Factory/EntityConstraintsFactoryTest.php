@@ -9,6 +9,7 @@ use \Symfony\Component\Validator\Mapping\ClassMetadata;
  * Test suite for factory class that provides metadata (constraints) for given entity
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
+ * @author Alexandr Zhulev <alexandrzhulev@gmail.com>
  */
 class EntityConstraintsFactoryTest extends WebTestCase
 {

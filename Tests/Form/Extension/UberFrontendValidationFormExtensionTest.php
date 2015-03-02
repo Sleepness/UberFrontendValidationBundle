@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * Test suite for form extension
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
+ * @author Alexandr Zhulev <alexandrzhulev@gmail.com>
  */
 class UberFrontendValidationFormExtensionTest extends WebTestCase
 {

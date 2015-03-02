@@ -8,7 +8,9 @@ Introduction
 
 ### Separation of concern
 
-The validator validates objects against constraints mapped to your entities.
+Symfony2 provide powerful tool for server side validation.
+This bundle provide tool for convert Symfony2 server side rules into friendly client side validation,
+to make your app more secured.
 
 N.B. This bundle supports only basic constraints, like `NotBlank`, `Length`, `DateTime`, etc.
 
