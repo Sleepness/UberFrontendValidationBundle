@@ -15,14 +15,13 @@ use Symfony\Component\Validator\Validator;
  */
 class UberFrontendValidationFormExtension extends AbstractTypeExtension
 {
-
     /**
      * @var \Sleepness\UberFrontendValidationBundle\Factory\EntityConstraintsFactory
      */
     private $factory;
 
     /**
-     * Set validator service for be able to get entity metadata
+     * Set validator service to be able to get entity metadata
      *
      * @param $factory
      */
@@ -54,9 +53,9 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     }
 
     /**
-     * Return the name of the type being extended
+     * Return the name of the extended type
      *
-     * @return string The name of the type being extended
+     * @return string The name of the extended type
      */
     public function getExtendedType()
     {
@@ -74,7 +73,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     {
         $result = array();
         $start = strrpos($fullFieldName, '[') + 1;
-        $finish =  strrpos($fullFieldName, ']');
+        $finish = strrpos($fullFieldName, ']');
         $length = $finish - $start;
         $fieldName = substr($fullFieldName, $start, $length);
         if ($entityMetadata != null) {
