@@ -57,6 +57,10 @@
                 data-message="{{ entity_constraints[full_name][constraint]['mimeTypesMessage'] }}"
             {% endif %}
 
+            {% if constraint == 'EqualTo' %}
+                data-value="{{ entity_constraints[full_name][constraint]['value'] }}"
+            {% endif %}
+
             {% if entity_constraints[full_name][constraint]['message'] is defined %}
                 data-message="{{ entity_constraints[full_name][constraint]['message'] }}"
             {% endif %}
