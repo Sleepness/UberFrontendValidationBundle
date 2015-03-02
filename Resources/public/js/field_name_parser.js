@@ -1,5 +1,5 @@
 /**
- * Return pure field name without
+ * Return pure field name
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @param name

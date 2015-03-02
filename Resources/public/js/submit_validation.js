@@ -1,5 +1,5 @@
 /**
- * This is the client side validation init script, that triggered when user click on submit button
+ * This is the client side validation init script, that triggers when user click on submit button
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  */
