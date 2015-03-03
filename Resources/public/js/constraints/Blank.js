@@ -1,16 +1,15 @@
 /**
- * Check if element is equal to null
+ * Check if field is empty
  *
- * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @author Alexandr Zhulev <alexandrzhulev@gmail.com>
  * @constructor
  */
-function UberNullValidationConstraint(field) {
-    this.message = 'This {{value}} should be null';
+function UberBlankValidationConstraint(field) {
+    this.message = 'Field {{value}} should be blank';
 
     this.validate = function () {
         var error = '';
-        if (field.val() !== null) {
+        if (field.val().length > 0) {
             error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
             if (field.attr('data-message') != '') {
                 error = field.attr('data-message');

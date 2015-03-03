@@ -8,15 +8,37 @@ Introduction
 
 ### Separation of concern
 
-Symfony2 provide powerful tool for server side validation.
-This bundle provide tool for convert Symfony2 server side rules into friendly client side validation,
-to make your app more secured.
+Symfony2 provides a powerful tool for server side validation.
+This bundle provides a tool to make your app more secured by converting Symfony2 server side rules
+into friendly client side validation.
 
-N.B. This bundle supports only basic constraints, like `NotBlank`, `Length`, `DateTime`, etc.
+This bundle supports the following constraints:
+Basic Constraints:
+- NotBlank
+- Blank
+- NotNull
+- Null
+- True
+- False
+
+String Constraints:
+- Email
+- Length
+- Url
+
+Comparison Constraint:
+- EqualTo
+
+Date Constraint:
+- DateTime
+
+File Constraints:
+- File
+- Image
 
 ### Symfony compatibility
 
-This bundle works on any symfony 2.0+ version.
+This bundle works on any Symfony 2.0+ version.
 
 Documentation
 -------------
