@@ -1,17 +1,21 @@
 /**
- * Check if element value equal to specific value
+ * Check if element value is equal to specific value
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @constructor
  */
 function UberEqualToValidationConstraint(field) {
-    this.message = 'This {{value}} must be equal to {{ value }}';
+    this.message = '{{ field_name }} should be equal to {{ compared_value }}';
 
     this.validate = function () {
         var error = '';
         if (field.val() != field.attr('data-value') || field.val() == '') {
-            var message = field.attr('data-message');
-            error = message.replace('{{ compared_value }}', field.attr('data-value'));
+            error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
+            error = error.replace('{{ compared_value }}', field.attr('data-value'));
+            if (field.attr('data-message')) {
+                error = field.attr('data-message');
+                error = error.replace('{{ compared_value }}', field.attr('data-value'));
+            }
         }
 
         return error;
