@@ -28,6 +28,7 @@ String Constraints:
 
 Comparison Constraint:
 - EqualTo
+- NotEqualTo
 
 Date Constraint:
 - DateTime
