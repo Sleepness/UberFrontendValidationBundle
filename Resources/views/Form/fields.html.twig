@@ -56,7 +56,11 @@
             {% endif %}
 
             {% if constraint == 'EqualTo' %}
-                data-value="{{ entity_constraints[full_name][constraint]['value'] }}"
+                data-value-equal-to="{{ entity_constraints[full_name][constraint]['value'] }}"
+            {% endif %}
+
+            {% if constraint == 'NotEqualTo' %}
+                data-value-not-equal-to="{{ entity_constraints[full_name][constraint]['value'] }}"
             {% endif %}
 
             {% if entity_constraints[full_name][constraint]['message'] is defined %}
