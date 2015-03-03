@@ -7,7 +7,6 @@
  * @author Alexandr Zhulev <alexandrzhulev@gmail.com>
  */
 #}
-
 {% block form_widget_simple %}
     {% set type = type|default('text') %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}
@@ -39,7 +38,6 @@
     {% set constraints = '' %}
     {% if field != '_token' and entity_constraints[full_name] is defined %}
         {% for constraint in entity_constraints[full_name]|keys %}
-            {#{{ dump(entity_constraints) }}#}
             {% if constraint == 'Length' %}
                 data-min="{{ (entity_constraints[full_name][constraint]['min'] != null) ? entity_constraints[full_name][constraint]['min'] : 0 }}"
                 data-max="{{ (entity_constraints[full_name][constraint]['max'] != null) ? entity_constraints[full_name][constraint]['max'] : 1000 }}"

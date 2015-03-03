@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Validator;
 
 /**
- * Class that will extend base form abilities
+ * From extension what make available client side validation available
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @author Alexandr Zhulev <alexandrzhulev@gmail.com>

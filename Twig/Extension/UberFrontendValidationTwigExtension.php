@@ -54,13 +54,15 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
 
     /**
      * Will return including all javascript files for validation
+     *
+     * @param $form
+     * @return string
      */
     public function getValidators($form)
     {
-        $output = '';
-        $validators = $this->factory->getCurrentValidators($form->vars['value']);
-        $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/field_name_parser.js') . '"></script>';
+        $output = '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/field_name_parser.js') . '"></script>';
         $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/submit_validation.js') . '"></script>';
+        $validators = $this->factory->getCurrentValidators($form->vars['value']);
         foreach ($validators as $key => $validator) {
             $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/constraints/' . $validator . '.js') . '"></script>';
         }
