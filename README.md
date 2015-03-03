@@ -31,6 +31,7 @@ Comparison Constraint:
 
 Date Constraint:
 - DateTime
+- Date
 
 File Constraints:
 - File
@@ -43,7 +44,7 @@ This bundle works on any Symfony 2.0+ version.
 Documentation
 -------------
 
-The bulk of the documentation is stored in the `Resources/doc/index.md` file in this bundle.
+The bulk of the documentation is stored in the [`Resources/doc/index.md`](https://github.com/Sleepness/UberFrontendValidationBundle/blob/develop/Resources/doc/index.md) file in this bundle.
 
 Installation
 ------------
