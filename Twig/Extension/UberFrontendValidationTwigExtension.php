@@ -60,7 +60,8 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
      */
     public function getValidators($form)
     {
-        $output = '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/field_name_parser.js') . '"></script>';
+        $output = '<link rel="stylesheet" type="text/css" href="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/css/validation.css') . '">';
+        $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/field_name_parser.js') . '"></script>';
         $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/submit_validation.js') . '"></script>';
         $validators = $this->factory->getCurrentValidators($form->vars['value']);
         foreach ($validators as $key => $validator) {
