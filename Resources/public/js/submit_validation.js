@@ -3,7 +3,7 @@
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  */
-(function($) {
+(function ($) {
     $(document).ready(function () {
         $('.form_submit_button').on('click', function (e) {
             $('#errors').html("");
@@ -13,13 +13,15 @@
                     $.each(errors, function (key, error) {
                         var name = 'Uber' + error + 'ValidationConstraint';
                         var className = window[name];
-                        var constraintInstance = new className($(val), []);
-                        var errorMessage = constraintInstance.validate();
-                        if (!errorMessage == '') {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            $(val).addClass('invalid-field');
-                            $(val).parent('div').append("<p class='errors'>" + errorMessage + "</p>");
+                        if (typeof(className) == "function") {
+                            var constraintInstance = new className($(val), []);
+                            var errorMessage = constraintInstance.validate();
+                            if (!errorMessage == '') {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                $(val).addClass('invalid-field');
+                                $(val).parent('div').append("<p class='errors'>" + errorMessage + "</p>");
+                            }
                         }
                     });
                 }
