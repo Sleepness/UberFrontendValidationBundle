@@ -10,11 +10,11 @@
                  class="Sleepness\UberFrontendValidationBundle\Twig\Extension\UberFrontendValidationTwigExtension"
                  public="true">
             <tag name="twig.extension"/>
-            <call method="setAssetHelper">
-                <argument type="service" id="twig.extension.assets" />
-            </call>
             <call method="setConstraintsFactory">
                 <argument type="service" id="uber_frontend_validation.entity_constraints_factory" />
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig" />
             </call>
         </service>
 

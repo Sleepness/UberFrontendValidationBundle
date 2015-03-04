@@ -12,9 +12,9 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
 {
 
     /**
-     * @var \Symfony\Bundle\TwigBundle\Extension\AssetsExtension
+     * @var \Twig_Environment
      */
-    private $assetHelper;
+    private $twig;
 
     /**
      * @var \Sleepness\UberFrontendValidationBundle\Factory\EntityConstraintsFactory
@@ -22,14 +22,13 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     private $factory;
 
     /**
-     * Set asset helper that
-     *
-     * @param $assetHelper
+     * @param $twig
      */
-    public function setAssetHelper($assetHelper)
+    public function setTwig($twig)
     {
-        $this->assetHelper = $assetHelper;
+        $this->twig = $twig;
     }
+
 
     /**
      * Set validator service for be able to get entity metadata
@@ -60,15 +59,10 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
      */
     public function getValidators($form)
     {
-        $output = '<link rel="stylesheet" type="text/css" href="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/css/validation.css') . '">';
-        $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/field_name_parser.js') . '"></script>';
-        $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/submit_validation.js') . '"></script>';
         $validators = $this->factory->getCurrentValidators($form->vars['value']);
-        foreach ($validators as $key => $validator) {
-            $output .= '<script type="text/javascript" src="' . $this->assetHelper->getAssetUrl('bundles/sleepnessuberfrontendvalidation/js/constraints/' . $validator . '.js') . '"></script>';
-        }
+        $response = $this->twig->render('SleepnessUberFrontendValidationBundle::form_validation.html.twig', array('validators' => $validators));
 
-        return $output;
+        return $response;
     }
 
     /**

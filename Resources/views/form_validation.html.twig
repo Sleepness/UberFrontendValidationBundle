@@ -1,0 +1,12 @@
+{% block SleepnessUberFrontendValidation_form_validation %}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/sleepnessuberfrontendvalidation/css/validation.css') }}">
+    <script type="text/javascript"
+            src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/field_name_parser.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/submit_validation.js') }}"></script>
+    {% for validator in validators %}
+        <script type="text/javascript"
+                src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/constraints/' ~ validator ~ '.js') }}"></script>
+    {% endfor %}
+{% endblock %}
