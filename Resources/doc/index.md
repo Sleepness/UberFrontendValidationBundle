@@ -57,6 +57,8 @@ Your twig template with form may look like this
 
 1) If you want to disable validation for some reasons you need only to remove `form_themes` property from Twig configuration
 
+2) If you want to override styles, or some script parts, you can override `SleepnessUberFrontendValidation::form_validation.html.twig` template.
+
 #### Note.
 1) If you create submit button using form builder, - you are safe, else, - add `class="form_submit_button"` attribute to your form's submitting field.
 
