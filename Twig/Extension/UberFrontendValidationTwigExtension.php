@@ -46,6 +46,7 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFunction('validation_init', array($this, 'getValidators'), array('is_safe' => array('html'))),
             new \Twig_SimpleFunction('pure_field_name', array($this, 'getFieldName'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('file_exists', array($this, 'fileExists'), array('is_safe' => array('html'))),
         );
     }
 
@@ -61,6 +62,17 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
         $response = $this->twig->render('SleepnessUberFrontendValidationBundle::form_validation.html.twig', array('validators' => $validators));
 
         return $response;
+    }
+
+    /**
+     * Check if file exists to avoid 404 error when try to get non existing file
+     *
+     * @param $path
+     * @return bool
+     */
+    public function fileExists($path)
+    {
+        return file_exists($path);
     }
 
     /**
