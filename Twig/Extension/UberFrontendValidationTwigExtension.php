@@ -10,7 +10,6 @@ namespace Sleepness\UberFrontendValidationBundle\Twig\Extension;
  */
 class UberFrontendValidationTwigExtension extends \Twig_Extension
 {
-
     /**
      * @var \Twig_Environment
      */
@@ -28,7 +27,6 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     {
         $this->twig = $twig;
     }
-
 
     /**
      * Set validator service for be able to get entity metadata
