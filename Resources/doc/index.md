@@ -59,6 +59,8 @@ Your twig template with form may look like this
 
 2) If you want to override styles, or some script parts, you can override `SleepnessUberFrontendValidation::form_validation.html.twig` template.
 
+3) If you want to disable client validation only for few forms, you can not call twig function `{{ validation_init(form) }}` for that form
+
 #### Note.
 1) If you create submit button using form builder, - you are safe, else, - add `class="form_submit_button"` attribute to your form's submitting field.
 
