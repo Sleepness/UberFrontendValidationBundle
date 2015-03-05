@@ -6,6 +6,7 @@
 $(document).ready(function () {
     $.each($('.form_submit_button'), function (k, button) {
         $(button).unbind('click').bind('click', function (e) { // need to be found second click trigger
+            $('.errors').remove();
             var $form = $(this).parent('form');
             $.each($form.find('*[data-constraint]'), function (key, val) {
                 var errors = ($(val).attr('data-constraint')).split(' ');
