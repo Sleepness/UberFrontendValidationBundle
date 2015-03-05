@@ -5,12 +5,12 @@
  * @constructor
  */
 function UberNotBlankValidationConstraint(field) {
-    this.message = 'Field {{value}} should not be blank';
+    this.message = 'Field {{ field_name }} should not be blank.';
 
     this.validate = function () {
         var error = '';
         if (field.val().length === 0) {
-            error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
+            error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
             if (field.attr('data-message-notblank') != '') {
                 error = field.attr('data-message-notblank');
             }

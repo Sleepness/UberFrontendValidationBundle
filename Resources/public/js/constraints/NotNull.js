@@ -6,12 +6,12 @@
  * @constructor
  */
 function UberNotNullValidationConstraint(field) {
-    this.message = 'This {{value}} should not be null';
+    this.message = 'Field {{ field_name }} should not be null.';
 
     this.validate = function () {
         var error = '';
         if (field.val() === null) {
-            error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
+            error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
             if (field.attr('data-message-notnull') != '') {
                 error = field.attr('data-message-notnull');
             }

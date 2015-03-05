@@ -5,7 +5,7 @@
  * @constructor
  */
 function UberEqualToValidationConstraint(field) {
-    this.message = '{{ field_name }} should be equal to {{ compared_value }}';
+    this.message = 'Field {{ field_name }} should be equal to {{ compared_value }}.';
 
     this.validate = function () {
         var error = '';

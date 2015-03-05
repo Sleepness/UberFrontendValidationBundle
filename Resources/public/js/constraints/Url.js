@@ -5,13 +5,13 @@
  * @constructor
  */
 function UberUrlValidationConstraint(field) {
-    this.message = 'This {{value}} is not valid URL';
+    this.message = 'Value of {{ field_name }} field is not a valid URL.';
 
     this.validate = function () {
         var error = '';
         var pattern = /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/;
         if (!pattern.test(field.val())) {
-            error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
+            error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
             if (field.attr('data-message-url') != '') {
                 error = field.attr('data-message-url');
             }
