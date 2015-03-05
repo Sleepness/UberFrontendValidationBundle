@@ -3,27 +3,29 @@
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  */
-(function ($) {
-    $('.form_submit_button').click(function (e) {
-        var $form = $(this).parent('form');
-        $.each($form.find('*[data-constraint]'), function (key, val) {
-            var errors = ($(val).attr('data-constraint')).split(' ');
-            if (errors.length > 0) { // for now we cant submit form even if it valid, I'll fix that in future
-                $.each(errors, function (key, error) {
-                    var name = 'Uber' + error + 'ValidationConstraint';
-                    var className = window[name];
-                    if (typeof(className) == "function") {
-                        var constraintInstance = new className($(val), []);
-                        var errorMessage = constraintInstance.validate();
-                        if (!errorMessage == '') {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            $(val).addClass('invalid-field');
-                            $(val).parent('div').append("<p class='errors'>" + errorMessage + "</p>");
+$(document).ready(function () {
+    $.each($('.form_submit_button'), function (k, button) {
+        $(button).unbind('click').bind('click', function (e) { // need to be found second click trigger
+            var $form = $(this).parent('form');
+            $.each($form.find('*[data-constraint]'), function (key, val) {
+                var errors = ($(val).attr('data-constraint')).split(' ');
+                if (errors.length > 0) {
+                    $.each(errors, function (key, error) {
+                        var name = 'Uber' + error + 'ValidationConstraint';
+                        var className = window[name];
+                        if (typeof(className) == "function") {
+                            var constraintInstance = new className($(val), []);
+                            var errorMessage = constraintInstance.validate();
+                            if (!errorMessage == '') {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                $(val).addClass('invalid-field');
+                                $(val).parent('div').append("<p class='errors'>" + errorMessage + "</p>");
+                            }
                         }
-                    }
-                });
-            }
+                    });
+                }
+            });
         });
     });
-})(jQuery);
+});
