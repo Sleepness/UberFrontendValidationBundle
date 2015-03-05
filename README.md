@@ -12,7 +12,14 @@ Symfony2 provides a powerful tool for server side validation.
 This bundle provides a tool to make your app more secured by converting Symfony2 server side rules
 into friendly client side validation.
 
+### Symfony compatibility
+
+This bundle works on any Symfony 2.0+ version.
+
+### Features
+
 This bundle supports the following constraints:
+
 Basic Constraints:
 - NotBlank
 - Blank
@@ -38,9 +45,7 @@ File Constraints:
 - File
 - Image
 
-### Symfony compatibility
-
-This bundle works on any Symfony 2.0+ version.
+SleepnessUberFrontendValidationBundle supports translating constraint messages, defined in message option of constraint.
 
 Documentation
 -------------
@@ -65,4 +70,4 @@ Pull requests are welcome.
 License
 -------
 
-See the complete license in the bundle: `Resources/meta/LICENSE`
+See the complete license in the bundle: [`Resources/meta/LICENSE`](https://github.com/Sleepness/UberFrontendValidationBundle/blob/develop/Resources/meta/LICENSE)
