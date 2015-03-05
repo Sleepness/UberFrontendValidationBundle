@@ -30,11 +30,13 @@ public function registerBundles()
 }
 ```
 
-### Step 3: Configure twig to make sure that you are using proper form theming
+### Step 3: Configure twig to make sure that you are using proper form theming, and that files with constraints exists
 
 ```yml
 twig:
   // some other options
+  globals:
+    web_path: "%kernel.root_dir%/../web"
   form_themes:
     - 'SleepnessUberFrontendValidationBundle:Form:fields.html.twig'
 ```
