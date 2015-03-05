@@ -6,12 +6,13 @@
 $(document).ready(function () {
     $.each($('.form_submit_button'), function (k, button) {
         $(button).unbind('click').bind('click', function (e) { // need to be found second click trigger
-            $('.errors').remove();
+            $(".errors").remove();
             var $form = $(this).parent('form');
             $.each($form.find('*[data-constraint]'), function (key, val) {
                 var errors = ($(val).attr('data-constraint')).split(' ');
                 if (errors.length > 0) {
                     $.each(errors, function (key, error) {
+                        $(val).removeClass('invalid-field');
                         var name = 'Uber' + error + 'ValidationConstraint';
                         var className = window[name];
                         if (typeof(className) == "function") {
