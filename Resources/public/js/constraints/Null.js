@@ -12,8 +12,8 @@ function UberNullValidationConstraint(field) {
         var error = '';
         if (field.val() !== null) {
             error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
-            if (field.attr('data-message') != '') {
-                error = field.attr('data-message');
+            if (field.attr('data-message-null') != '') {
+                error = field.attr('data-message-null');
             }
         }
 

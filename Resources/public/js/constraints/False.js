@@ -11,8 +11,8 @@ function UberFalseValidationConstraint(field) {
         var error = '';
         if (field.val() != false) {
             error = this.message.replace('{{value}}', String(parse_field_name(field.attr('name'))));
-            if (field.attr('data-message') != '') {
-                error = field.attr('data-message');
+            if (field.attr('data-message-false') != '') {
+                error = field.attr('data-message-false');
             }
         }
 

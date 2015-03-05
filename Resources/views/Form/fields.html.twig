@@ -56,15 +56,15 @@
             {% endif %}
 
             {% if constraint == 'EqualTo' %}
-                data-value-equal-to="{{ entity_constraints[full_name][constraint]['value'] }}"
+                data-value-equalto="{{ entity_constraints[full_name][constraint]['value'] }}"
             {% endif %}
 
             {% if constraint == 'NotEqualTo' %}
-                data-value-not-equal-to="{{ entity_constraints[full_name][constraint]['value'] }}"
+                data-value-notequalto="{{ entity_constraints[full_name][constraint]['value'] }}"
             {% endif %}
 
             {% if entity_constraints[full_name][constraint]['message'] is defined %}
-                data-message="{{ entity_constraints[full_name][constraint]['message'] }}"
+                data-message-{{ constraint }}="{{ entity_constraints[full_name][constraint]['message'] }}"
             {% endif %}
 
             {% if loop.index == loop.first %}
