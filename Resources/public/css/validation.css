@@ -5,4 +5,5 @@
 
 .invalid-field {
     border-color: #a94442;
+    background-color: lightpink;
 }
