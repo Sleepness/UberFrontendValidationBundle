@@ -55,6 +55,10 @@ Your twig template with form may look like this
 </form>
 ```
 
+### Step 5: Check for using jQuery
+
+Add `jQuery` to your project in one of the suitable [ways](http://jquery.com/download/).
+
 ### Additional:
 
 1) If you want for some reasons to disable client side validation you need only to remove `form_themes` property from Twig configuration.
