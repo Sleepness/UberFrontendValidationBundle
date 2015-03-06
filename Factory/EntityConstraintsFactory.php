@@ -29,7 +29,7 @@ class EntityConstraintsFactory
     /**
      * Get metadata for given class
      *
-     * @param $dataClass
+     * @param $dataClass - entity class
      * @return \Symfony\Component\Validator\MetadataInterface
      */
     public function getEntityMetadata($dataClass)
@@ -59,4 +59,4 @@ class EntityConstraintsFactory
 
         return $validators;
     }
-} 
+}

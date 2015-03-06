@@ -6,7 +6,7 @@
     <script type="text/javascript"
             src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/submit_validation.js') }}"></script>
     {% for validator in validators %}
-        {% if (file_exists(web_path~'/bundles/sleepnessuberfrontendvalidation/js/constraints/' ~ validator ~ '.js') == true) %}
+        {% if (file_exists(uber_web_path~'/bundles/sleepnessuberfrontendvalidation/js/constraints/' ~ validator ~ '.js') == true) %}
             <script type="text/javascript"
                     src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/constraints/' ~ validator ~ '.js') }}"></script>
         {% endif %}

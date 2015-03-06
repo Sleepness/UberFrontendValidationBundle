@@ -53,9 +53,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     }
 
     /**
-     * Return the name of the extended type
-     *
-     * @return string The name of the extended type
+     * {@inheritdoc}
      */
     public function getExtendedType()
     {

@@ -36,7 +36,7 @@ public function registerBundles()
 twig:
   // some other options
   globals:
-    web_path: "%kernel.root_dir%/../web"
+    uber_web_path: "%kernel.root_dir%/../web"
   form_themes:
     - 'SleepnessUberFrontendValidationBundle:Form:fields.html.twig'
 ```
