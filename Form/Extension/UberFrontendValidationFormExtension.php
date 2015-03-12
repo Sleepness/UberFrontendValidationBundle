@@ -39,12 +39,13 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
         $parentForm = $form->getParent();
         if ($parentForm) {
             $config = $parentForm->getConfig();
+            $validationGroups = $config->getOptions()['validation_groups'];
             $dataClass = $config->getDataClass();
             $entityMetadata = null;
             if ($dataClass != null) {
                 $entityMetadata = $this->factory->getEntityMetadata($dataClass);
             }
-            $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fullFieldName, $entityMetadata);
+            $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fullFieldName, $entityMetadata, $validationGroups);
         }
     }
 
@@ -59,11 +60,12 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     /**
      * Prepare array of constraints based on entity metadata
      *
-     * @param $fullFieldName  - name of form field
+     * @param $fullFieldName - name of form field
      * @param $entityMetadata - entity metadata
-     * @return array          - prepared constraints for given field
+     * @param $validationGroups - form validation groups
+     * @return array            - prepared constraints for given field
      */
-    private function prepareConstraintsAttributes($fullFieldName, $entityMetadata)
+    private function prepareConstraintsAttributes($fullFieldName, $entityMetadata, $validationGroups)
     {
         $result = array();
         $start = strrpos($fullFieldName, '[') + 1;
@@ -74,12 +76,25 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
             $entityProperties = $entityMetadata->properties;
             foreach ($entityProperties as $property => $credentials) {
                 if ($property == $fieldName) {
-                    $constraints = $entityProperties[$property]->constraints;
-                    foreach ($constraints as $constraint) {
-                        $partsOfConstraintName = explode('\\', get_class($constraint));
-                        $constraintName = end($partsOfConstraintName);
-                        foreach ($constraint as $constraintProperty => $constraintValue) {
-                            $result[$fullFieldName][$constraintName][$constraintProperty] = $constraintValue;
+                    if (($validationGroups != null)) {
+                        if (in_array($validationGroups[0], array_keys($credentials->constraintsByGroup))) {
+                            $constraints = $entityProperties[$property]->constraints;
+                            foreach ($constraints as $constraint) {
+                                $partsOfConstraintName = explode('\\', get_class($constraint));
+                                $constraintName = end($partsOfConstraintName);
+                                foreach ($constraint as $constraintProperty => $constraintValue) {
+                                    $result[$fullFieldName][$constraintName][$constraintProperty] = $constraintValue;
+                                }
+                            }
+                        }
+                    } else {
+                        $constraints = $entityProperties[$property]->constraints;
+                        foreach ($constraints as $constraint) {
+                            $partsOfConstraintName = explode('\\', get_class($constraint));
+                            $constraintName = end($partsOfConstraintName);
+                            foreach ($constraint as $constraintProperty => $constraintValue) {
+                                $result[$fullFieldName][$constraintName][$constraintProperty] = $constraintValue;
+                            }
                         }
                     }
                 }
