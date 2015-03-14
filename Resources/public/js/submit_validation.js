@@ -3,33 +3,30 @@
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  */
-jQuery.noConflict();
 (function ($) {
     $(function () {
-        $.each($('.form_submit_button'), function (k, button) {
-            $(button).unbind('click').bind('click', function (e) { // need to be found second click trigger
-                var $form = $(this).parent('form');
-                $form.find(".errors").remove();
-                $.each($form.find('*[data-constraint]'), function (key, val) {
-                    var errors = ($(val).attr('data-constraint')).split(' ');
-                    if (errors.length > 0) {
-                        $.each(errors, function (key, error) {
-                            $(val).removeClass('invalid-field');
-                            var name = 'Uber' + error + 'ValidationConstraint';
-                            var className = window[name];
-                            if (typeof(className) == "function") {
-                                var constraintInstance = new className($(val), []);
-                                var errorMessage = constraintInstance.validate();
-                                if (!errorMessage == '') {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    $(val).addClass('invalid-field');
-                                    $(val).parent('div').append("<p class='errors'>" + errorMessage + "</p>");
-                                }
+        $('.form_submit_button').on('click', function (e) {
+            var $form = $(this).parent('form');
+            $form.find(".errors").remove();
+            $form.find('*[data-constraint]').each(function (key, val) {
+                var errors = ($(val).attr('data-constraint')).split(' ');
+                if (errors.length > 0) {
+                    $.each(errors, function (key, error) {
+                        $(val).removeClass('invalid-field');
+                        var name = 'Uber' + error + 'ValidationConstraint';
+                        var className = window[name];
+                        if (typeof(className) == "function") {
+                            var constraintInstance = new className($(val), []);
+                            var errorMessage = constraintInstance.validate();
+                            if (!errorMessage == '') {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                $(val).addClass('invalid-field');
+                                $(val).parent('div').append("<p class='errors'>" + errorMessage + "</p>");
                             }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
             });
         });
     });
