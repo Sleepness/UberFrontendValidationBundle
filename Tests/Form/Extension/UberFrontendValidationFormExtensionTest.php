@@ -18,6 +18,8 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
      */
     private $extension;
 
+    private $validator;
+
     /**
      * Test getExtendedType() for proper returning value
      */
@@ -31,10 +33,10 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
      */
     public function testPrepareConstraintsAttributes()
     {
-        $entityMetadata = $this->factory->getEntityMetadata('Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity\Post');
+        $entityMetadata = $this->validator->getMetadataFor('Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity\Post');
         $reflectedMethod = new ReflectionMethod($this->extension, 'prepareConstraintsAttributes');
         $reflectedMethod->setAccessible(TRUE);
-        $preparedConstraintsAttributes = $reflectedMethod->invoke($this->extension, 'post[title]', $entityMetadata);
+        $preparedConstraintsAttributes = $reflectedMethod->invoke($this->extension, 'post[title]', $entityMetadata, array('Default'));
         $fullFieldNames = array_keys($preparedConstraintsAttributes);
         $constraintNames = array_keys($preparedConstraintsAttributes[$fullFieldNames[0]]);
         $constraintProperties = array_keys($preparedConstraintsAttributes[$fullFieldNames[0]][$constraintNames[0]]);
@@ -56,5 +58,6 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
         static::bootKernel(array());
         $container = static::$kernel->getContainer();
         $this->extension = $container->get('uber_frontend_validation.form_extension');
+        $this->validator = $container->get('validator');
     }
 }
