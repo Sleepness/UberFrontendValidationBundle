@@ -25,6 +25,6 @@
         "symfony/framework-bundle": "~2.3"
     },
     "autoload" : {
-        "psr-0" : { "Sleepness\\UberFrontendValidationBundle" : "" }
+        "psr-4" : { "Sleepness\\UberFrontendValidationBundle\\" : "" }
     }
 }
