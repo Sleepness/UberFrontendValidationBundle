@@ -20,15 +20,6 @@ class UberFrontendValidationTwigExtensionTest extends WebTestCase
     private $assetDir;
 
     /**
-     * Test file exists method
-     */
-    public function testFileExists()
-    {
-        $this->assertEquals(true, $this->extension->fileExists($this->assetDir.'/bundles/sleepnessuberfrontendvalidation/js/submit_validation.js'));
-        $this->assertTrue($this->extension->fileExists($this->assetDir.'/bundles/sleepnessuberfrontendvalidation/js/submit_validation.js'));
-    }
-
-    /**
      * Test method that returns pure field name
      */
     public function testGetFieldName()

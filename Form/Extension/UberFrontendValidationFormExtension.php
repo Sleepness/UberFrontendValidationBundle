@@ -16,18 +16,18 @@ use Symfony\Component\Validator\Validator;
 class UberFrontendValidationFormExtension extends AbstractTypeExtension
 {
     /**
-     * @var \Sleepness\UberFrontendValidationBundle\Factory\EntityConstraintsFactory
+     * @var Validator
      */
-    private $factory;
+    private $validator;
 
     /**
      * Set validator service to be able to get entity metadata
      *
-     * @param $factory
+     * @param $validator
      */
-    public function setConstraintsFactory($factory)
+    public function setValidator($validator)
     {
-        $this->factory = $factory;
+        $this->validator = $validator;
     }
 
     /**
@@ -43,7 +43,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
             $dataClass = $config->getDataClass();
             $entityMetadata = null;
             if ($dataClass != null) {
-                $entityMetadata = $this->factory->getEntityMetadata($dataClass);
+                $entityMetadata = $this->validator->getMetadataFor($dataClass);
             }
             $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fullFieldName, $entityMetadata, $validationGroups);
         }

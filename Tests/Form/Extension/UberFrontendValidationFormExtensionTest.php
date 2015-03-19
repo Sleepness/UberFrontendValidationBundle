@@ -19,11 +19,6 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
     private $extension;
 
     /**
-     * @var \Sleepness\UberFrontendValidationBundle\Factory\EntityConstraintsFactory
-     */
-    private $factory;
-
-    /**
      * Test getExtendedType() for proper returning value
      */
     public function testGetExtendedType()
@@ -61,6 +56,5 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
         static::bootKernel(array());
         $container = static::$kernel->getContainer();
         $this->extension = $container->get('uber_frontend_validation.form_extension');
-        $this->factory = $container->get('uber_frontend_validation.entity_constraints_factory');
     }
 }

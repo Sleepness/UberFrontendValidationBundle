@@ -10,9 +10,6 @@
                  class="Sleepness\UberFrontendValidationBundle\Twig\Extension\UberFrontendValidationTwigExtension"
                  public="true">
             <tag name="twig.extension"/>
-            <call method="setConstraintsFactory">
-                <argument type="service" id="uber_frontend_validation.entity_constraints_factory"/>
-            </call>
             <call method="setTwig">
                 <argument type="service" id="twig"/>
             </call>
@@ -21,13 +18,6 @@
         <service id="uber_frontend_validation.form_extension"
                  class="Sleepness\UberFrontendValidationBundle\Form\Extension\UberFrontendValidationFormExtension">
             <tag name="form.type_extension" alias="form"/>
-            <call method="setConstraintsFactory">
-                <argument type="service" id="uber_frontend_validation.entity_constraints_factory"/>
-            </call>
-        </service>
-
-        <service id="uber_frontend_validation.entity_constraints_factory"
-                 class="Sleepness\UberFrontendValidationBundle\Factory\EntityConstraintsFactory">
             <call method="setValidator">
                 <argument type="service" id="validator"/>
             </call>

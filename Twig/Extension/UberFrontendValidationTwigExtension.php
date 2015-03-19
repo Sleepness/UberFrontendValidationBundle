@@ -16,26 +16,11 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     private $twig;
 
     /**
-     * @var \Sleepness\UberFrontendValidationBundle\Factory\EntityConstraintsFactory
-     */
-    private $factory;
-
-    /**
      * @param $twig
      */
     public function setTwig($twig)
     {
         $this->twig = $twig;
-    }
-
-    /**
-     * Set validator service for be able to get entity metadata
-     *
-     * @param $factory
-     */
-    public function setConstraintsFactory($factory)
-    {
-        $this->factory = $factory;
     }
 
     /**
@@ -53,26 +38,11 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     /**
      * Will return including all javascript files for validation
      *
-     * @param $form
      * @return string
      */
-    public function getValidators($form)
+    public function getValidators()
     {
-        $validators = $this->factory->getCurrentValidators($form->vars['value']);
-        $response = $this->twig->render('SleepnessUberFrontendValidationBundle::form_validation.html.twig', array('validators' => $validators));
-
-        return $response;
-    }
-
-    /**
-     * Check if file exists to avoid 404 error when try to get non existing file
-     *
-     * @param $path
-     * @return bool
-     */
-    public function fileExists($path)
-    {
-        return file_exists($path);
+        return $this->twig->render('SleepnessUberFrontendValidationBundle::form_validation.html.twig');
     }
 
     /**

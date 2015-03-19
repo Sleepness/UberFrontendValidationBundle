@@ -35,20 +35,22 @@ public function registerBundles()
 ```yml
 twig:
   // some other options
-  globals:
-    uber_web_path: "%kernel.root_dir%/../web"
   form_themes:
     - 'SleepnessUberFrontendValidationBundle:Form:fields.html.twig'
 ```
 
 ### Step 4: Proper displaying of form
 
-Your twig template with form may look like this
+In main layout enable forms validation:
 
 ```html
-
 {{ validation_init(form) }}
 
+```
+
+Then you form may look like this^
+
+```html
 <form method="post" {{ form_enctype(form) }} >
     {{ form_widget(form) }}
     <button type="submit" class="form_submit_button">Save</button>
@@ -63,13 +65,11 @@ Add `jQuery` to your project in one of the suitable [ways](http://jquery.com/dow
 
 1) If you want for some reasons to disable client side validation you need only to remove `form_themes` property from Twig configuration.
 
-2) If you want to disable client side validation only for exact form, you have to exclude calling `{{ validation_init(form) }}` twig function for that form.
+2) If you want to use some custom styles, or scripts, you have to override `SleepnessUberFrontendValidation::form_validation.html.twig` template.
 
-3) If you want to use some custom styles, or scripts, you have to override `SleepnessUberFrontendValidation::form_validation.html.twig` template.
+3) If you want to make validate forms loaded by ajax, only what you need is to render form like described above with {{ validation_init() }} function.
 
-4) If you want to make validate forms loaded by ajax, only what you need is to render form like described above with {{ validation_init() }} function.
-
-5) If you assign some validation group to form type, and print some field that doesn't belong to the given group you will be surprised that validated will be only fields of given group,
+4) If you assign some validation group to form type, and print some field that doesn't belong to the given group you will be surprised that validated will be only fields of given group,
    but it works only when only single group assigned to form. (need to do in future)
 
 #### Notes:
