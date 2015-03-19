@@ -1,6 +1,8 @@
-{% block SleepnessUberFrontendValidation_form_validation %}
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('bundles/sleepnessuberfrontendvalidation/css/validation.css') }}">
+{% stylesheets '@SleepnessUberFrontendValidationBundle/Resources/public/css/*' filter='yui_css' %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/sleepnessuberfrontendvalidation/css/validation.css') }}">
+{% endstylesheets %}
+
+{% javascripts '@SleepnessUberFrontendValidationBundle/Resources/public/js/*' filter='yui_js' %}
     <script type="text/javascript"
             src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/field_name_parser.js') }}"></script>
     <script type="text/javascript"
@@ -11,4 +13,4 @@
                     src="{{ asset('bundles/sleepnessuberfrontendvalidation/js/constraints/' ~ validator ~ '.js') }}"></script>
         {% endif %}
     {% endfor %}
-{% endblock %}
+{% endjavascripts %}
