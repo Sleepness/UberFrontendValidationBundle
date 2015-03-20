@@ -48,7 +48,7 @@ In main layout enable forms validation:
 
 ```
 
-Then you form may look like this^
+Then you form may look like this:
 
 ```html
 <form method="post" {{ form_enctype(form) }} >
@@ -67,7 +67,7 @@ Add `jQuery` to your project in one of the suitable [ways](http://jquery.com/dow
 
 2) If you want to use some custom styles, or scripts, you have to override `SleepnessUberFrontendValidation::form_validation.html.twig` template.
 
-3) If you want to make validate forms loaded by ajax, only what you need is to render form like described above with {{ validation_init() }} function.
+3) Forms loaded by ajax will be validated too, just make sure that you enable `{{ validation_init() }}` function.
 
 4) If you assign some validation group to form type, and print some field that doesn't belong to the given group you will be surprised that validated will be only fields of given group,
    but it works only when only single group assigned to form. (need to do in future)
@@ -78,5 +78,3 @@ Add `jQuery` to your project in one of the suitable [ways](http://jquery.com/dow
 
 2) DateTime validator works only if your choose `single_text` widget for it, e.g. in your FormType
 `->add('date', 'datetime', ['widget' => 'single_text'])` (for Date validator this rule works too).
-
-to be continue...
