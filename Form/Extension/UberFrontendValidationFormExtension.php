@@ -8,7 +8,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Validator;
 
 /**
- * From extension what make available client side validation available
+ * From extension what make available client side validation,
+ * by getting entity metadata and pass it in form theme
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  * @author Alexandr Zhulev <alexandrzhulev@gmail.com>
@@ -16,7 +17,7 @@ use Symfony\Component\Validator\Validator;
 class UberFrontendValidationFormExtension extends AbstractTypeExtension
 {
     /**
-     * @var Validator
+     * @var \Symfony\Component\Validator\ValidatorInterface
      */
     private $validator;
 
@@ -35,47 +36,36 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $fullFieldName = $view->vars['full_name'];
+        $fieldName = $view->vars['full_name'];
         $parentForm = $form->getParent();
-        if ($parentForm) {
+        if ($parentForm != null) {
             $config = $parentForm->getConfig();
             $validationGroups = $config->getOptions()['validation_groups'];
             $dataClass = $config->getDataClass();
-            $entityMetadata = null;
-            if ($dataClass != null) {
-                $entityMetadata = $this->validator->getMetadataFor($dataClass);
-            }
-            $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fullFieldName, $entityMetadata, $validationGroups);
+            $entityMetadata = ($dataClass != null) ? $entityMetadata = $this->validator->getMetadataFor($dataClass) : null;
+            $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fieldName, $entityMetadata, $validationGroups);
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return 'form';
     }
 
     /**
      * Prepare array of constraints based on entity metadata
      *
-     * @param $fullFieldName - name of form field
-     * @param $entityMetadata - entity metadata
+     * @param $fieldName        - name of form field
+     * @param $entityMetadata   - entity metadata
      * @param $validationGroups - form validation groups
      * @return array            - prepared constraints for given field
      */
-    private function prepareConstraintsAttributes($fullFieldName, $entityMetadata, $validationGroups)
+    private function prepareConstraintsAttributes($fieldName, $entityMetadata, $validationGroups)
     {
         $result = array();
-        $start = strrpos($fullFieldName, '[') + 1;
-        $finish = strrpos($fullFieldName, ']');
+        $start = strrpos($fieldName, '[') + 1;
+        $finish = strrpos($fieldName, ']');
         $length = $finish - $start;
-        $fieldName = substr($fullFieldName, $start, $length);
+        $parsedFieldName = substr($fieldName, $start, $length);
         if ($entityMetadata != null) {
             $entityProperties = $entityMetadata->properties;
             foreach ($entityProperties as $property => $credentials) {
-                if ($property == $fieldName) {
+                if ($property == $parsedFieldName) {
                     if (($validationGroups != null)) {
                         if (in_array($validationGroups[0], array_keys($credentials->constraintsByGroup))) {
                             $constraints = $entityProperties[$property]->constraints;
@@ -83,7 +73,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
                                 $partsOfConstraintName = explode('\\', get_class($constraint));
                                 $constraintName = end($partsOfConstraintName);
                                 foreach ($constraint as $constraintProperty => $constraintValue) {
-                                    $result[$fullFieldName][$constraintName][$constraintProperty] = $constraintValue;
+                                    $result[$fieldName][$constraintName][$constraintProperty] = $constraintValue;
                                 }
                             }
                         }
@@ -93,7 +83,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
                             $partsOfConstraintName = explode('\\', get_class($constraint));
                             $constraintName = end($partsOfConstraintName);
                             foreach ($constraint as $constraintProperty => $constraintValue) {
-                                $result[$fullFieldName][$constraintName][$constraintProperty] = $constraintValue;
+                                $result[$fieldName][$constraintName][$constraintProperty] = $constraintValue;
                             }
                         }
                     }
@@ -102,5 +92,13 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
         }
 
         return $result;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtendedType()
+    {
+        return 'field';
     }
 } 
