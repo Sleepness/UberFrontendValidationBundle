@@ -58,10 +58,8 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     private function prepareConstraintsAttributes($fieldName, $entityMetadata, $validationGroups)
     {
         $result = array();
-        $start = strrpos($fieldName, '[') + 1;
-        $finish = strrpos($fieldName, ']');
-        $length = $finish - $start;
-        $parsedFieldName = substr($fieldName, $start, $length);
+        preg_match("/\[([^\]]*)\]/", $fieldName, $matches);
+        $parsedFieldName = $matches[1];
         if ($entityMetadata != null) {
             $entityProperties = $entityMetadata->properties;
             foreach ($entityProperties as $property => $credentials) {

@@ -52,15 +52,9 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
      */
     public function getFieldName($field)
     {
-        $start = "[";
-        $end = "]";
-        $string = " " . $field;
-        $ini = strpos($string, $start);
-        if ($ini == 0) return "";
-        $ini += strlen($start);
-        $len = strpos($string, $end, $ini) - $ini;
+        preg_match("/\[([^\]]*)\]/", $field, $matches);
 
-        return substr($string, $ini, $len);
+        return $matches[1];
     }
 
     /**
