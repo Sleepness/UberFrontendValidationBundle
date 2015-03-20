@@ -17,8 +17,6 @@ class UberFrontendValidationTwigExtensionTest extends WebTestCase
      */
     private $extension;
 
-    private $assetDir;
-
     /**
      * Test method that returns pure field name
      */
@@ -37,6 +35,5 @@ class UberFrontendValidationTwigExtensionTest extends WebTestCase
         static::bootKernel(array());
         $container = static::$kernel->getContainer();
         $this->extension = $container->get('uber_frontend_validation.twig_extension');
-        $this->assetDir = static::$kernel->getRootdir() . '/../web';
     }
 } 

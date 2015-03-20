@@ -18,6 +18,9 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
      */
     private $extension;
 
+    /**
+     * @var \Symfony\Component\Validator\ValidatorInterface
+     */
     private $validator;
 
     /**
@@ -25,7 +28,7 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
      */
     public function testGetExtendedType()
     {
-        $this->assertEquals('form', $this->extension->getExtendedType());
+        $this->assertEquals('field', $this->extension->getExtendedType());
     }
 
     /**
