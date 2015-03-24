@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Sleepness/UberFrontendValidationBundle.svg?branch=develop)](https://travis-ci.org/Sleepness/UberFrontendValidationBundle)
+
 SleepnessUberFrontendValidationBundle
 =====================
 
