@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Sleepness/UberFrontendValidationBundle.svg?branch=develop)](https://travis-ci.org/Sleepness/UberFrontendValidationBundle)
+[![Build Status](https://travis-ci.org/Sleepness/UberFrontendValidationBundle.svg?branch=develop)](https://travis-ci.org/Sleepness/UberFrontendValidationBundle)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Sleepness/UberFrontendValidationBundle/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/Sleepness/UberFrontendValidationBundle/?branch=develop)
 
 SleepnessUberFrontendValidationBundle
 =====================
