@@ -25,6 +25,8 @@
         "symfony/framework-bundle": "~2.3"
     },
     "require-dev": {
+        "symfony/finder": "~2.6",
+        "symfony/console": "~2.6",
         "phpunit/phpunit": "~4.5"
     },
     "autoload" : {
