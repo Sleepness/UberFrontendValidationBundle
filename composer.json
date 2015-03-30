@@ -25,7 +25,9 @@
         "symfony/framework-bundle": "~2.3",
         "symfony/twig-bundle": "~2.3",
         "symfony/validator": "2.6.*@dev",
-        "symfony/form": "2.6.*@dev"
+        "symfony/form": "2.6.*@dev",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2"
     },
     "require-dev": {
         "symfony/finder": "~2.6",
