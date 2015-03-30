@@ -1,3 +1,5 @@
 vendor/*
 composer.lock
 phpunit.xml
+Tests/Fixtures/app/cache
+Tests/Fixtures/app/logs
