@@ -3,5 +3,5 @@ framework:
     test: ~
     router: { resource: "%kernel.root_dir%/routing.yml" }
     templating: { engines: ['twig'] }
-    validation: ~
+    validation: { enable_annotations: true }
     form: ~
