@@ -41,6 +41,7 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
         $reflectedMethod->setAccessible(TRUE);
         $preparedConstraintsAttributes = $reflectedMethod->invoke($this->extension, 'post[title]', $entityMetadata, array('Default'));
         $fullFieldNames = array_keys($preparedConstraintsAttributes);
+        var_dump($preparedConstraintsAttributes[$fullFieldNames[0]]);die;
         $constraintNames = array_keys($preparedConstraintsAttributes[$fullFieldNames[0]]);
         $constraintProperties = array_keys($preparedConstraintsAttributes[$fullFieldNames[0]][$constraintNames[0]]);
         $this->assertEquals('post[title]', $fullFieldNames[0]);
