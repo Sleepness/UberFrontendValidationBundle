@@ -5,7 +5,6 @@ namespace Sleepness\UberFrontendValidationBundle\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Validator\Validator;
 
 /**
  * From extension what make available client side validation,
@@ -38,11 +37,11 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     {
         $fieldName = $view->vars['full_name'];
         $parentForm = $form->getParent();
-        if ($parentForm != null) {
+        if ($parentForm !== null) {
             $config = $parentForm->getConfig();
             $validationGroups = $config->getOptions()['validation_groups'];
             $dataClass = $config->getDataClass();
-            $entityMetadata = ($dataClass != null) ? $this->validator->getMetadataFor($dataClass) : null;
+            $entityMetadata = ($dataClass !== null) ? $this->validator->getMetadataFor($dataClass) : null;
             $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fieldName, $entityMetadata, $validationGroups);
         }
     }
@@ -60,11 +59,11 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
         $result = array();
         preg_match("/\[([^\]]*)\]/", $fieldName, $matches);
         $parsedFieldName = $matches[1];
-        if ($entityMetadata != null) {
+        if ($entityMetadata !== null) {
             $entityProperties = $entityMetadata->properties;
             foreach ($entityProperties as $property => $credentials) {
                 if ($property == $parsedFieldName) {
-                    if (($validationGroups != null)) {
+                    if (($validationGroups !== null)) {
                         $difference = array_diff($validationGroups, array_keys($credentials->constraintsByGroup));
                         if (count($difference) < count($validationGroups)) {
                             $constraints = $entityProperties[$property]->constraints;
