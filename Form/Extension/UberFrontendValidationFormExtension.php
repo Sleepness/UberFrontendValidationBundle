@@ -55,7 +55,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
      * @param $validationGroups - form validation groups
      * @return array            - prepared constraints for given field
      */
-    public function prepareConstraintsAttributes($fieldName, $entityMetadata, $validationGroups)
+    private function prepareConstraintsAttributes($fieldName, $entityMetadata, $validationGroups)
     {
         $result = array();
         preg_match("/\[([^\]]*)\]/", $fieldName, $matches);
