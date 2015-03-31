@@ -49,8 +49,8 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     /**
      * Prepare array of constraints based on entity metadata
      *
-     * @param $fieldName        - name of form field
-     * @param $entityMetadata   - entity metadata
+     * @param $fieldName - name of form field
+     * @param $entityMetadata - entity metadata
      * @param $validationGroups - form validation groups
      * @return array            - prepared constraints for given field
      */
@@ -66,26 +66,33 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
                     if (($validationGroups !== null)) {
                         $difference = array_diff($validationGroups, array_keys($credentials->constraintsByGroup));
                         if (count($difference) < count($validationGroups)) {
-                            $constraints = $entityProperties[$property]->constraints;
-                            foreach ($constraints as $constraint) {
-                                $partsOfConstraintName = explode('\\', get_class($constraint));
-                                $constraintName = end($partsOfConstraintName);
-                                foreach ($constraint as $constraintProperty => $constraintValue) {
-                                    $result[$fieldName][$constraintName][$constraintProperty] = $constraintValue;
-                                }
-                            }
+                            $result = $this->fillResults($entityProperties[$property]->constraints, $fieldName, $result);
                         }
                     } else {
-                        $constraints = $entityProperties[$property]->constraints;
-                        foreach ($constraints as $constraint) {
-                            $partsOfConstraintName = explode('\\', get_class($constraint));
-                            $constraintName = end($partsOfConstraintName);
-                            foreach ($constraint as $constraintProperty => $constraintValue) {
-                                $result[$fieldName][$constraintName][$constraintProperty] = $constraintValue;
-                            }
-                        }
+                        $result = $this->fillResults($entityProperties[$property]->constraints, $fieldName, $result);
                     }
                 }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Push into results array constraints for certain property
+     *
+     * @param $constraints
+     * @param $fieldName
+     * @param $result
+     * @return mixed
+     */
+    private function fillResults($constraints, $fieldName, $result)
+    {
+        foreach ($constraints as $constraint) {
+            $partsOfConstraintName = explode('\\', get_class($constraint));
+            $constraintName = end($partsOfConstraintName);
+            foreach ($constraint as $constraintProperty => $constraintValue) {
+                $result[$fieldName][$constraintName][$constraintProperty] = $constraintValue;
             }
         }
 
