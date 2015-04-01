@@ -1,21 +1,17 @@
 <?php
 
-namespace Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity;
+namespace Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Model;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * This entity is required for test suite of this project
- *
- * @ORM\Entity
+ * This model is required for test suite of this project
  *
  * @author Viktor Novikov <viktor.novikov95@gmail.com>
  */
 class Post
 {
     /**
-     * @ORM\Column(name="title", type="string", length=255)
      * @Assert\NotBlank(message="Title should not be blank!")
      * @Assert\Length(min=8, minMessage = "This value should be longer than 8 chars")
      */

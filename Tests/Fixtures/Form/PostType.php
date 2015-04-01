@@ -27,7 +27,7 @@ class PostType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Entity\Post',
+            'data_class' => 'Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Model\Post',
         ]);
     }
 
