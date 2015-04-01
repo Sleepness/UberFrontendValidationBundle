@@ -30,25 +30,38 @@ public function registerBundles()
 }
 ```
 
-### Step 3: Configure Twig for proper form theming and checking existence of constraint files
+### Step 3: Add configuration
+
+Configure Twig for proper form theming and checking existence of constraint files:
 
 ```yml
 twig:
-  // some other options
+  # some other options
   form_themes:
     - 'SleepnessUberFrontendValidationBundle:Form:fields.html.twig'
 ```
+Configure Assetic to minify included javascripts and stylesheets with [YUI Compressor](http://symfony.com/doc/current/cookbook/assetic/yuicompressor.html):
 
-### Step 4: Proper displaying of form
+```yml
+assetic:
+    # some other options
+    filters:
+        yui_css:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+        yui_js:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+```
+
+### Step 4: Proper form displaying
 
 In main layout enable forms validation:
 
 ```html
-{{ validation_init(form) }}
+{{ validation_init() }}
 
 ```
 
-Then you form may look like this:
+Then your form may look like this:
 
 ```html
 <form method="post" {{ form_enctype(form) }} >
