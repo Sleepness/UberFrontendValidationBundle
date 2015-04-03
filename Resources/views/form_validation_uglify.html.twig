@@ -1,0 +1,7 @@
+{% stylesheets '@SleepnessUberFrontendValidationBundle/Resources/public/css/*' filter='uglifycss' filter='cssrewrite' %}
+    {% include 'SleepnessUberFrontendValidationBundle::css_files.html.twig' %}
+{% endstylesheets %}
+
+{% javascripts '@SleepnessUberFrontendValidationBundle/Resources/public/js/*' filter='uglifyjs2' %}
+    {% include 'SleepnessUberFrontendValidationBundle::javascripts.html.twig' %}
+{% endjavascripts %}

@@ -37,11 +37,20 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     /**
      * Will return including all javascript files for validation
      *
+     * @param $minificator
      * @return string
      */
-    public function validationInit()
+    public function validationInit($minificator = null)
     {
-        return $this->twig->render('SleepnessUberFrontendValidationBundle::form_validation.html.twig');
+        $response = $this->twig->render('SleepnessUberFrontendValidationBundle::form_validation.html.twig');
+        if ($minificator == 'yui') {
+            $response = $this->twig->render('SleepnessUberFrontendValidationBundle::form_validation_yui.html.twig');
+        }
+        if ($minificator == 'uglify') {
+            $response = $this->twig->render('SleepnessUberFrontendValidationBundle::form_validation_uglify.html.twig');
+        }
+
+        return $response;
     }
 
     /**
