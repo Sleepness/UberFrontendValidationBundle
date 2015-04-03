@@ -39,7 +39,8 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
         $parentForm = $form->getParent();
         if ($parentForm !== null) {
             $config = $parentForm->getConfig();
-            $validationGroups = $config->getOptions()['validation_groups'];
+            $options = $config->getOptions();
+            $validationGroups = $options['validation_groups'];
             $dataClass = $config->getDataClass();
             $entityMetadata = ($dataClass !== null) ? $this->validator->getMetadataFor($dataClass) : null;
             $view->vars['entity_constraints'] = $this->prepareConstraintsAttributes($fieldName, $entityMetadata, $validationGroups);
