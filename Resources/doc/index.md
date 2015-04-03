@@ -65,6 +65,17 @@ In main layout enable forms validation:
 
 ```
 
+If you want to configure some assets minifier and want to use it when get validation resources, you need to path argument into
+`validation_init()` function.
+
+For now available:
+
+```html
+{{ validation_init('yui') }} // for YUI compressor
+
+{{ validation_init('uglify') }} //for Uglify compressor
+```
+
 Then your form may look like this:
 
 ```html
