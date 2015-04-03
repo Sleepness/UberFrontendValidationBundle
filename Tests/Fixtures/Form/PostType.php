@@ -18,7 +18,7 @@ class PostType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text', ['label' => 'form.title']);
+        $builder->add('title', 'text', array('label' => 'form.title'));
     }
 
     /**
@@ -26,9 +26,9 @@ class PostType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(array(
             'data_class' => 'Sleepness\UberFrontendValidationBundle\Tests\Fixtures\Model\Post',
-        ]);
+        ));
     }
 
     /**
