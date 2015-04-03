@@ -6,7 +6,7 @@
 (function ($) {
     $(function () {
         $('.form_submit_button').on('click', function (e) {
-            var $form = $(this).parent('form');
+            var $form = $(this).closest('form');
             $form.find(".errors").remove();
             $form.find('*[data-constraint]').each(function (key, val) {
                 var errors = ($(val).attr('data-constraint')).split(' ');
