@@ -40,6 +40,8 @@ twig:
   form_themes:
     - 'SleepnessUberFrontendValidationBundle:Form:fields.html.twig'
 ```
+If you want to use some asset minifier, firs you need to configure it.
+
 Configure Assetic to minify included javascripts and stylesheets with [YUI Compressor](http://symfony.com/doc/current/cookbook/assetic/yuicompressor.html):
 
 ```yml
@@ -51,6 +53,8 @@ assetic:
         yui_js:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
 ```
+
+How configure Assetic with UglifyJS(UglifyCSS) read [here](http://symfony.com/doc/current/cookbook/assetic/uglifyjs.html).
 
 ### Step 4: Proper form displaying
 
