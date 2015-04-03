@@ -95,7 +95,7 @@ Add `jQuery` to your project in one of the suitable [ways](http://jquery.com/dow
 
 2) If you want to use some custom styles, or scripts, you have to override `SleepnessUberFrontendValidation::form_validation.html.twig` template.
 
-3) Forms loaded by ajax will be validated too, just make sure that you enable `{{ validation_init() }}` function.
+3) Forms loaded by ajax will be validated too, just make sure that you enable `{{ validation_init() }}` function in template where loaded form is.
 
 4) If you assign some validation group to form type, and print some field that doesn't belong to the given group you will be surprised that validated will be only fields of given group,
    but it works only when only single group assigned to form. (need to do in future)
