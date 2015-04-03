@@ -41,10 +41,14 @@
     {% if field != '_token' and entity_constraints[full_name] is defined %}
         {% for constraint in entity_constraints[full_name]|keys %}
             {% if constraint == 'Length' %}
-                data-min="{{ (entity_constraints[full_name][constraint]['min'] != null) ? entity_constraints[full_name][constraint]['min'] : 0 }}"
-                data-max="{{ (entity_constraints[full_name][constraint]['max'] != null) ? entity_constraints[full_name][constraint]['max'] : 1000 }}"
-                data-min-message="{{ entity_constraints[full_name][constraint]['minMessage']|trans }}"
-                data-max-message="{{ entity_constraints[full_name][constraint]['maxMessage']|trans }}"
+                {% set data_min = entity_constraints[full_name][constraint]['min'] ?: 0 %}
+                {% set data_max = entity_constraints[full_name][constraint]['max'] ?: 1000 %}
+                data-min="{{ data_min }}"
+                data-max="{{ data_max }}"
+                data-min-message=
+                "{{ entity_constraints[full_name][constraint]['minMessage']|transchoice(data_min, {'{{ limit }}':data_min}) }}"
+                data-max-message=
+                "{{ entity_constraints[full_name][constraint]['maxMessage']|transchoice(data_max, {'{{ limit }}':data_max}) }}"
             {% endif %}
 
             {% if constraint == 'File' %}
