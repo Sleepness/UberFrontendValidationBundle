@@ -45,10 +45,15 @@
                 {% set data_max = entity_constraints[full_name][constraint]['max'] ?: 1000 %}
                 data-min="{{ data_min }}"
                 data-max="{{ data_max }}"
-                data-min-message=
-                "{{ entity_constraints[full_name][constraint]['minMessage']|transchoice(data_min, {'{{ limit }}': data_min}) }}"
-                data-max-message=
-                "{{ entity_constraints[full_name][constraint]['maxMessage']|transchoice(data_max, {'{{ limit }}': data_max}) }}"
+                {% if data_min == data_max %}
+                    data-exact-message=
+                    "{{ entity_constraints[full_name][constraint]['exactMessage']|transchoice(data_min, {'{{ limit }}': data_min}) }}"
+                {% else %}
+                    data-min-message=
+                    "{{ entity_constraints[full_name][constraint]['minMessage']|transchoice(data_min, {'{{ limit }}': data_min}) }}"
+                    data-max-message=
+                    "{{ entity_constraints[full_name][constraint]['maxMessage']|transchoice(data_max, {'{{ limit }}': data_max}) }}"
+                {% endif %} }}"
             {% endif %}
 
             {% if constraint == 'File' %}
