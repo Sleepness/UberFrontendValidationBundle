@@ -9,24 +9,33 @@ function UberLengthValidationConstraint(field) {
 
     this.validate = function () {
         var error = '';
-        var preparedMaxMessage = '';
+        var definedDataMin = field.attr('data-min');
+        var definedDataMax = field.attr('data-max');
+        var fieldName = parse_field_name(field.attr('name'));
+        var fieldLength = field.val().length;
 
-        if (field.val().length < field.attr('data-min')) {
-            error = this.message.replace('{{ min }}', String(field.attr('data-min')));
-            error = error.replace('{{ max }}', String(field.attr('data-max')));
-            error = error.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
+        if (fieldLength < definedDataMin) {
+            error = this.message.replace('{{ min }}', definedDataMin);
+            error = error.replace('{{ max }}', definedDataMax);
+            error = error.replace('{{ field_name }}', fieldName);
             if (field.attr('data-min-message')) {
                 error = field.attr('data-min-message');
             }
         }
 
-        if (field.val().length > field.attr('data-max')) {
-            error = this.message.replace('{{ min }}', String(field.attr('data-min')));
-            error = error.replace('{{ max }}', String(field.attr('data-max')));
-            error = error.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
-            if (field.attr('data-min-message') && field.attr('data-max-message')) {
-                preparedMaxMessage = (field.attr('data-max-message')).split('|')[0];
-                error = preparedMaxMessage.replace('{{ limit }}', field.attr('data-max'));
+        if (fieldLength > definedDataMax) {
+            error = this.message.replace('{{ min }}', definedDataMin);
+            error = error.replace('{{ max }}', definedDataMax);
+            error = error.replace('{{ field_name }}', fieldName);
+            if (field.attr('data-max-message')) {
+                error = field.attr('data-max-message');
+            }
+        }
+
+        if (definedDataMin == definedDataMax && fieldLength != definedDataMin) {
+            error = 'Field ' + fieldName + ' should have exactly ' + definedDataMin + ' character(s)';
+            if (field.attr('data-exact-message')) {
+                error = field.attr('data-exact-message');
             }
         }
 
