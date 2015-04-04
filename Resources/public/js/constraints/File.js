@@ -16,11 +16,28 @@ function UberFileValidationConstraint(field) {
                 error = field.attr('data-message');
             }
         } else {
-            if (document.getElementById(field_id).files[0].size > field.attr('data-maxsize')) {
+            var chosenFileSize = document.getElementById(field_id).files[0].size;
+            var definedFileSize = field.attr('data-maxsize');
+            if (chosenFileSize > definedFileSize) {
                 error = field.attr('data-size-message');
+                chosenFileSize = bytesToMetric(chosenFileSize);
+                definedFileSize = bytesToMetric(definedFileSize);
+                error = error.replace('{{ size }}', chosenFileSize[0]);
+                error = error.replace('{{ suffix }}', chosenFileSize[1]);
+                error = error.replace('{{ limit }}', definedFileSize[0]);
+                error = error.replace('{{ suffix }}', definedFileSize[1]);
             }
         }
 
         return error;
     }
+}
+
+function bytesToMetric(bytes) {
+    var sizes = ['bytes', 'kB', 'MB', 'GB', 'TB'];
+    if (bytes == 0) return [0, 'byte'];
+    var k = 1000;
+    var i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return [(bytes / Math.pow(k, i)).toPrecision(3), sizes[i]];
 }

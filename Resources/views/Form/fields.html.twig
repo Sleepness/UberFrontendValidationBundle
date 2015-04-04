@@ -52,14 +52,8 @@
             {% endif %}
 
             {% if constraint == 'File' %}
-                {% set data_maxSize = entity_constraints[full_name][constraint]['maxSize'] %}
-                data-maxSize="{{ data_maxSize }}"
-                data-size-message=
-                    "{{ entity_constraints[full_name][constraint]['maxSizeMessage']|trans({
-                        ' ({{ size }} {{ suffix }}).': '.',
-                        '{{ limit }}': data_maxSize,
-                        '{{ suffix }}': 'bytes'})
-                    }}"
+                data-maxSize="{{ entity_constraints[full_name][constraint]['maxSize'] }}"
+                data-size-message="{{ entity_constraints[full_name][constraint]['maxSizeMessage']|trans }}"
                 data-message="{{ entity_constraints[full_name][constraint]['uploadNoFileErrorMessage']|trans }}"
             {% endif %}
 
