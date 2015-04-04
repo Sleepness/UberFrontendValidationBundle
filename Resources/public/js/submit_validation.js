@@ -18,7 +18,7 @@
                         if (typeof(className) == "function") {
                             var constraintInstance = new className($(val), []);
                             var errorMessage = constraintInstance.validate();
-                            if (!errorMessage == '') {
+                            if (errorMessage) {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 $(val).addClass('invalid-field');
