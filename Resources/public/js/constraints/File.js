@@ -16,7 +16,7 @@ function UberFileValidationConstraint(field) {
                 error = field.attr('data-message');
             }
         } else {
-            if (document.getElementById(field_id).files[0].size > field.attr('maxSize')) {
+            if (document.getElementById(field_id).files[0].size > field.attr('data-maxsize')) {
                 error = field.attr('data-size-message');
             }
         }
