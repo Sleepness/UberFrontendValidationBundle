@@ -46,14 +46,20 @@
                 data-min="{{ data_min }}"
                 data-max="{{ data_max }}"
                 data-min-message=
-                "{{ entity_constraints[full_name][constraint]['minMessage']|transchoice(data_min, {'{{ limit }}':data_min}) }}"
+                "{{ entity_constraints[full_name][constraint]['minMessage']|transchoice(data_min, {'{{ limit }}': data_min}) }}"
                 data-max-message=
-                "{{ entity_constraints[full_name][constraint]['maxMessage']|transchoice(data_max, {'{{ limit }}':data_max}) }}"
+                "{{ entity_constraints[full_name][constraint]['maxMessage']|transchoice(data_max, {'{{ limit }}': data_max}) }}"
             {% endif %}
 
             {% if constraint == 'File' %}
-                data-maxSize="{{ entity_constraints[full_name][constraint]['maxSize'] }}"
-                data-size-message="{{ entity_constraints[full_name][constraint]['maxSizeMessage']|trans }}"
+                {% set data_maxSize = entity_constraints[full_name][constraint]['maxSize'] %}
+                data-maxSize="{{ data_maxSize }}"
+                data-size-message=
+                    "{{ entity_constraints[full_name][constraint]['maxSizeMessage']|trans({
+                        ' ({{ size }} {{ suffix }}).': '.',
+                        '{{ limit }}': data_maxSize,
+                        '{{ suffix }}': 'bytes'})
+                    }}"
                 data-message="{{ entity_constraints[full_name][constraint]['uploadNoFileErrorMessage']|trans }}"
             {% endif %}
 
