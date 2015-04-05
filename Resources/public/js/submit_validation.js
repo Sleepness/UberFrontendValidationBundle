@@ -9,10 +9,10 @@
             var $form = $(this).closest('form');
             $form.find(".errors").remove();
             $form.find('*[data-constraint]').each(function (key, val) {
+                $(val).removeClass('invalid-field');
                 var errors = ($(val).attr('data-constraint')).split(' ');
                 if (errors.length > 0) {
                     $.each(errors, function (key, error) {
-                        $(val).removeClass('invalid-field');
                         var name = 'Uber' + error + 'ValidationConstraint';
                         var className = window[name];
                         if (typeof(className) == "function") {
