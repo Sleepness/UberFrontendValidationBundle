@@ -1,5 +1,9 @@
-{% stylesheets '@SleepnessUberFrontendValidationBundle/Resources/public/css/*' %}
+{% stylesheets '@SleepnessUberFrontendValidationBundle/Resources/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
 
-{% javascripts '@SleepnessUberFrontendValidationBundle/Resources/public/js/*' %}
+{% javascripts
+    '@SleepnessUberFrontendValidationBundle/Resources/public/js/*'
+    '@SleepnessUberFrontendValidationBundle/Resources/public/js/constraints/*' %}
+    <script src="{{ asset_url }}"></script>
 {% endjavascripts %}

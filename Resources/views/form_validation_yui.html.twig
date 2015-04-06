@@ -1,7 +1,9 @@
-{% stylesheets '@SleepnessUberFrontendValidationBundle/Resources/public/css/*' filter='yui_css' %}
-    {% include 'SleepnessUberFrontendValidationBundle::css_files.html.twig' %}
+{% stylesheets '@SleepnessUberFrontendValidationBundle/Resources/public/css/*' filter='yui_css' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
 
-{% javascripts '@SleepnessUberFrontendValidationBundle/Resources/public/js/*' filter='yui_js' %}
-    {% include 'SleepnessUberFrontendValidationBundle::javascripts.html.twig' %}
+{% javascripts
+    '@SleepnessUberFrontendValidationBundle/Resources/public/js/*'
+    '@SleepnessUberFrontendValidationBundle/Resources/public/js/constraints/*' filter='yui_js' %}
+    <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
