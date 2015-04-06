@@ -1,7 +1,9 @@
 {% stylesheets '@SleepnessUberFrontendValidationBundle/Resources/public/css/*' filter='uglifycss' filter='cssrewrite' %}
-    {% include 'SleepnessUberFrontendValidationBundle::css_files.html.twig' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
 
-{% javascripts '@SleepnessUberFrontendValidationBundle/Resources/public/js/*' filter='uglifyjs2' %}
-    {% include 'SleepnessUberFrontendValidationBundle::javascripts.html.twig' %}
+{% javascripts
+    '@SleepnessUberFrontendValidationBundle/Resources/public/js/*'
+    '@SleepnessUberFrontendValidationBundle/Resources/public/js/constraints/*' filter='uglifyjs2' %}
+    <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
