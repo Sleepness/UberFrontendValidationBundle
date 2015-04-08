@@ -47,22 +47,15 @@ File Constraints:
 - File
 - Image
 
-SleepnessUberFrontendValidationBundle supports translating constraint messages, defined in message option of constraint.
+
+SleepnessUberFrontendValidationBundle supports:
+- translating constraint messages, defined in message option of constraint;
+- "validation groups" for organizing constraints.
 
 Documentation
 -------------
 
-The bulk of the documentation is stored in the [`Resources/doc/index.md`](https://github.com/Sleepness/UberFrontendValidationBundle/blob/develop/Resources/doc/index.md) file in this bundle.
-
-Installation
-------------
-
-The installation of Bundle instructions are located in the documentation.
-
-Configuration
--------------
-
-All the configuration instructions are located in the documentation.
+The bulk of the documentation for installation and configuration is stored in the [`Resources/doc/index.md`](https://github.com/Sleepness/UberFrontendValidationBundle/blob/develop/Resources/doc/index.md) file in this bundle.
 
 Contributing
 ------------
@@ -72,4 +65,4 @@ Pull requests are welcome.
 License
 -------
 
-See the complete license in the bundle: [`Resources/meta/LICENSE`](https://github.com/Sleepness/UberFrontendValidationBundle/blob/develop/Resources/meta/LICENSE)
+See the complete license in the bundle: [`Resources/meta/LICENSE`](https://github.com/Sleepness/UberFrontendValidationBundle/blob/develop/Resources/meta/LICENSE).
