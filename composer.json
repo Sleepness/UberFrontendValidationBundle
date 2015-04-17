@@ -1,10 +1,13 @@
 {
     "name" : "sleepness/uber-frontend-validation-bundle",
     "type" : "symfony-bundle",
-    "description" : "Symfony UberFrontendValidationBundle (Sleepness Team)",
+    "description" : "Provides a powerful tool for client side validation form data",
     "keywords" : [
         "validation",
-        "forms"
+        "validator",
+        "forms",
+        "Symfony2",
+        "javascript"
     ],
     "homepage": "http://sleepness.github.io/",
     "license": "MIT",
