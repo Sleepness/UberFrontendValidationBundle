@@ -9,13 +9,13 @@ function UberTrueValidationConstraint(field) {
 
     this.validate = function () {
         var error = '';
-        if (field.val() != true) {
-            error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
-            if (field.attr('data-message-true') != '') {
-                error = field.attr('data-message-true');
-            }
+        if (!field.val()) return error;
+
+        error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
+        if (field.attr('data-message-true') !== '') {
+            error = field.attr('data-message-true');
         }
 
         return error;
-    }
+    };
 }

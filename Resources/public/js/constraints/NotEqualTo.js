@@ -9,15 +9,15 @@ function UberNotEqualToValidationConstraint(field) {
 
     this.validate = function () {
         var error = '';
-        if (field.val() == field.attr('data-value-notequalto')) {
-            error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
+
+        if (field.val() !== field.attr('data-value-notequalto'))  return error;
+        error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
+        error = error.replace('{{ compared_value }}', field.attr('data-value-notequalto'));
+        if (field.attr('data-message-notequalto')) {
+            error = field.attr('data-message-notequalto');
             error = error.replace('{{ compared_value }}', field.attr('data-value-notequalto'));
-            if (field.attr('data-message-notequalto')) {
-                error = field.attr('data-message-notequalto');
-                error = error.replace('{{ compared_value }}', field.attr('data-value-notequalto'));
-            }
         }
 
         return error;
-    }
+    };
 }

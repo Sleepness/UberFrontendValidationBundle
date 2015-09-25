@@ -8,11 +8,11 @@ function UberLengthValidationConstraint(field) {
     this.message = 'Field {{ field_name }} should have more than {{ min }} characters and less than {{ max }} characters.';
 
     this.validate = function () {
-        var error = '';
-        var definedDataMin = field.attr('data-min');
-        var definedDataMax = field.attr('data-max');
-        var fieldName = parse_field_name(field.attr('name'));
-        var fieldLength = field.val().length;
+        var error = '',
+            definedDataMin = field.attr('data-min'),
+            definedDataMax = field.attr('data-max'),
+            fieldName = parse_field_name(field.attr('name')),
+            fieldLength = field.val().length;
 
         if (fieldLength < definedDataMin) {
             error = this.message.replace('{{ min }}', definedDataMin);
@@ -40,5 +40,5 @@ function UberLengthValidationConstraint(field) {
         }
 
         return error;
-    }
+    };
 }

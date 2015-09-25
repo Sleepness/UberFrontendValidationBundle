@@ -11,11 +11,11 @@ function UberBlankValidationConstraint(field) {
         var error = '';
         if (field.val().length > 0) {
             error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
-            if (field.attr('data-message-blank') != '') {
+            if (field.attr('data-message-blank') !== '') {
                 error = field.attr('data-message-blank');
             }
         }
 
         return error;
-    }
+    };
 }

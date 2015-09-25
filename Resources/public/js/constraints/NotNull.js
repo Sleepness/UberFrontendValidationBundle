@@ -10,11 +10,10 @@ function UberNotNullValidationConstraint(field) {
 
     this.validate = function () {
         var error = '';
-        if (field.val() === null) {
-            error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
-            if (field.attr('data-message-notnull') != '') {
-                error = field.attr('data-message-notnull');
-            }
+        if (field.val() !== null) return error;
+        error = this.message.replace('{{ field_name }}', String(parse_field_name(field.attr('name'))));
+        if (field.attr('data-message-notnull') !== '') {
+            error = field.attr('data-message-notnull');
         }
 
         return error;
