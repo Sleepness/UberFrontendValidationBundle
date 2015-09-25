@@ -18,7 +18,7 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     /**
      * @param $twig
      */
-    public function setTwig($twig)
+    public function setTwig(\Twig_Extension $twig)
     {
         $this->twig = $twig;
     }
@@ -67,9 +67,7 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     }
 
     /**
-     * Return name of extension
-     *
-     * @return string - name of extension
+     * {@inherit}
      */
     public function getName()
     {

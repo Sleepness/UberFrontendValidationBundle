@@ -5,6 +5,7 @@ namespace Sleepness\UberFrontendValidationBundle\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\ValidatorInterface;
 
 /**
  * From extension what make available client side validation,
@@ -16,7 +17,7 @@ use Symfony\Component\Form\FormInterface;
 class UberFrontendValidationFormExtension extends AbstractTypeExtension
 {
     /**
-     * @var \Symfony\Component\Validator\ValidatorInterface
+     * @var ValidatorInterface
      */
     private $validator;
 
@@ -25,7 +26,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
      *
      * @param $validator
      */
-    public function setValidator($validator)
+    public function setValidator(ValidatorInterface $validator)
     {
         $this->validator = $validator;
     }
@@ -37,7 +38,7 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     {
         $fieldName = $view->vars['full_name'];
         $parentForm = $form->getParent();
-        if ($parentForm !== null) {
+        if (!empty($parentForm)) {
             $config = $parentForm->getConfig();
             $options = $config->getOptions();
             $validationGroups = $options['validation_groups'];
@@ -50,8 +51,8 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
     /**
      * Prepare array of constraints based on entity metadata
      *
-     * @param $fieldName - name of form field
-     * @param $entityMetadata - entity metadata
+     * @param $fieldName        - name of form field
+     * @param $entityMetadata   - entity metadata
      * @param $validationGroups - form validation groups
      * @return array            - prepared constraints for given field
      */
@@ -60,19 +61,20 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
         $result = array();
         preg_match("/\[([^\]]*)\]/", $fieldName, $matches);
         $parsedFieldName = $matches[1];
-        if ($entityMetadata !== null) {
-            $entityProperties = $entityMetadata->properties;
-            foreach ($entityProperties as $property => $credentials) {
-                if ($property == $parsedFieldName) {
-                    if (($validationGroups !== null)) {
-                        $difference = array_diff($validationGroups, array_keys($credentials->constraintsByGroup));
-                        if (count($difference) < count($validationGroups)) {
-                            $result = $this->fillResults($entityProperties[$property]->constraints, $fieldName, $result);
-                        }
-                    } else {
-                        $result = $this->fillResults($entityProperties[$property]->constraints, $fieldName, $result);
-                    }
+
+        if (empty($entityMetadata)) return $result;
+
+        $entityProperties = $entityMetadata->properties;
+
+        foreach ($entityProperties as $property => $credentials) {
+            if ($property != $parsedFieldName) continue;
+            if (!empty($validationGroups)) {
+                $difference = array_diff($validationGroups, array_keys($credentials->constraintsByGroup));
+                if (count($difference) < count($validationGroups)) {
+                    $result = $this->fillResults($entityProperties[$property]->constraints, $fieldName, $result);
                 }
+            } else {
+                $result = $this->fillResults($entityProperties[$property]->constraints, $fieldName, $result);
             }
         }
 
