@@ -11,22 +11,19 @@
             $form.find('*[data-constraint]').each(function (key, val) {
                 $(val).removeClass('invalid-field');
                 var errors = ($(val).attr('data-constraint')).split(' ');
-                if (errors.length > 0) {
-                    $.each(errors, function (key, error) {
-                        var name = 'Uber' + error + 'ValidationConstraint';
-                        var className = window[name];
-                        if (typeof(className) == "function") {
-                            var constraintInstance = new className($(val), []);
-                            var errorMessage = constraintInstance.validate();
-                            if (errorMessage) {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                $(val).addClass('invalid-field');
-                                $(val).after("<p class='errors'>" + errorMessage + "</p>");
-                            }
-                        }
-                    });
-                }
+                if (errors.length < 1) return;
+                $.each(errors, function (key, error) {
+                    var name = 'Uber' + error + 'ValidationConstraint',
+                        className = window[name];
+                    if (typeof(className) != "function") return;
+                    var constraintInstance = new className($(val), []),
+                        errorMessage = constraintInstance.validate();
+                    if (!errorMessage) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $(val).addClass('invalid-field');
+                    $(val).after("<p class='errors'>" + errorMessage + "</p>");
+                });
             });
         });
     });
