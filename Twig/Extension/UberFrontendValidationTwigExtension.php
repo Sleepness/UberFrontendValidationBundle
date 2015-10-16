@@ -18,7 +18,7 @@ class UberFrontendValidationTwigExtension extends \Twig_Extension
     /**
      * @param $twig
      */
-    public function setTwig(\Twig_Extension $twig)
+    public function setTwig($twig)
     {
         $this->twig = $twig;
     }

@@ -43,6 +43,7 @@ class UberFrontendValidationFormExtensionTest extends WebTestCase
         $fullFieldNames = array_keys($preparedConstraintsAttributes);
         $constraintNames = array_keys($preparedConstraintsAttributes[$fullFieldNames[0]]);
         $constraintProperties = array_keys($preparedConstraintsAttributes[$fullFieldNames[0]][$constraintNames[0]]);
+
         $this->assertEquals('post[title]', $fullFieldNames[0]);
         $this->assertEquals('NotBlank', $constraintNames[0]);
         $this->assertEquals('Length', $constraintNames[1]);

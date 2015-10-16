@@ -62,12 +62,16 @@ class UberFrontendValidationFormExtension extends AbstractTypeExtension
         preg_match("/\[([^\]]*)\]/", $fieldName, $matches);
         $parsedFieldName = $matches[1];
 
-        if (empty($entityMetadata)) return $result;
+        if (empty($entityMetadata)) {
+            return $result;
+        }
 
         $entityProperties = $entityMetadata->properties;
 
         foreach ($entityProperties as $property => $credentials) {
-            if ($property != $parsedFieldName) continue;
+            if ($property != $parsedFieldName) {
+                continue;
+            }
             if (!empty($validationGroups)) {
                 $difference = array_diff($validationGroups, array_keys($credentials->constraintsByGroup));
                 if (count($difference) < count($validationGroups)) {

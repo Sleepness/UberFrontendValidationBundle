@@ -17,7 +17,6 @@ function UberEmailValidationConstraint(field) {
             error = field.attr('data-message-email');
         }
 
-
         return error;
     };
 }
