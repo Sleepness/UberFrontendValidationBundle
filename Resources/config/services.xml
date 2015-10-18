@@ -4,19 +4,21 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameters key="sleepness.uber.twig.validation_extension.class">Sleepness\UberFrontendValidationBundle\Twig\Extension\UberFrontendValidationTwigExtension</parameters>
+        <parameters key="sleepness.uber.from.from_extension.class">Sleepness\UberFrontendValidationBundle\Form\Extension\UberFrontendValidationFormExtension</parameters>
+    </parameters>
+
     <services>
 
-        <service id="uber_frontend_validation.twig_extension"
-                 class="Sleepness\UberFrontendValidationBundle\Twig\Extension\UberFrontendValidationTwigExtension"
-                 public="true">
+        <service id="uber_frontend_validation.twig_extension" class="sleepness.uber.twig.validation_extension.class" public="true">
             <tag name="twig.extension"/>
             <call method="setTwig">
                 <argument type="service" id="twig"/>
             </call>
         </service>
 
-        <service id="uber_frontend_validation.form_extension"
-                 class="Sleepness\UberFrontendValidationBundle\Form\Extension\UberFrontendValidationFormExtension">
+        <service id="uber_frontend_validation.form_extension" class="%sleepness.uber.from.from_extension.class%">
             <tag name="form.type_extension" alias="form"/>
             <call method="setValidator">
                 <argument type="service" id="validator"/>
